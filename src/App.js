@@ -11,14 +11,15 @@ function App() {
   return (
     <div>
       <Router>
-        {/* <Layout> */}
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="" element={<BMICalculator />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        {/* </Layout>  */}
+        <Layout>
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/bmi" element={<BMICalculator />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
       </Router>
     </div>
   );

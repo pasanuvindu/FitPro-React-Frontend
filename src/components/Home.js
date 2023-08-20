@@ -32,9 +32,9 @@ const Home = () => {
           </div>
         </section>
       </main>
-      <footer className="bg-gray-200 p-4 text-center">
+      {/* <footer className="bg-gray-200 p-4 text-center">
         <p>&copy; 2023 Fitness Pro. All rights reserved.</p>
-      </footer>
+      </footer> */}
     </div>
   );
 };
