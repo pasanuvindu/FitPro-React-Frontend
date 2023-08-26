@@ -9,7 +9,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-black text-white">
+    <nav className="bg-black text-white" style={{ position: "fixed", width: "100%", zIndex: 100 }}>
       <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
         <h1 className="text-3xl font-bold" style={{ color: "#FF6B6B" }}>
           <span style={{ color: "#FF6B6B" }}>F</span>
@@ -30,10 +30,10 @@ const Navbar = () => {
           </button>
         </div>
         <ul className="hidden md:flex space-x-4">
-          <li>Home</li>
-          <li>Company</li>
-          <li>About</li>
-          <li>Contact</li>
+          <li className="nav-item hover:text-[#FF6B6B]">Home</li>
+          <li className="nav-item hover:text-[#FF6B6B]">Company</li>
+          <li className="nav-item hover:text-[#FF6B6B]">About</li>
+          <li className="nav-item hover:text-[#FF6B6B]">Contact</li>
         </ul>
       </div>
       {navOpen && (
