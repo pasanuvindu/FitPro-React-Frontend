@@ -11,7 +11,15 @@ const Navbar = () => {
   return (
     <nav className="bg-black text-white">
       <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
-        <h1 className="text-3xl font-bold text-[#8700b1]">FitPro.</h1>
+        <h1 className="text-3xl font-bold" style={{ color: "#FF6B6B" }}>
+          <span style={{ color: "#FF6B6B" }}>F</span>
+          <span style={{ color: "#FFD56B" }}>i</span>
+          <span style={{ color: "#FF6B6B" }}>t</span>
+          <span style={{ color: "#FFD56B" }}>P</span>
+          <span style={{ color: "#FF6B6B" }}>r</span>
+          <span style={{ color: "#FFD56B" }}>o</span>
+          <span style={{ color: "#FF6B6B" }}>.</span>
+        </h1>
         <div className="md:hidden">
           <button onClick={toggleNav}>
             {navOpen ? (
