@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000", // Change this URL to your API's base URL
+  baseURL: "http://localhost:5000/api", // Change this URL to your API's base URL
 });
 
 // Add a request interceptor to include the token in the headers for authenticated requests
@@ -21,6 +21,9 @@ export const updatePost = (id, updatedPost) =>
   API.patch(`/posts/${id}`, updatedPost);
 export const deletePost = (id) => API.delete(`/posts/${id}`);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
+
+// Workout APIs
+export const fetchWorkouts = () => API.get("/workouts");
 
 // // Common APIs
 // export const calculateDistance = (longLat) =>
