@@ -17,13 +17,13 @@ const Layout = ({ children }) => {
         <div>
           <Navbar />
           <div className="text-center">
-            <img
+            {/* <img
               src={logo}
               alt="Fitness Gym Logo"
               className="mx-auto mt-4"
               width="50px"
               height="50px"
-            />
+            /> */}
             <div>{children}</div>
           </div>
           <Footer />

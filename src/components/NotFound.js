@@ -1,13 +1,13 @@
-// NotFound.js
 import React from "react";
+import svg from "./assets/404.svg";
 
 function NotFound() {
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-4xl font-semibold mb-4">404 - Page Not Found</h1>
-        <p>The page you are looking for does not exist.</p>
-      </div>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <img src={svg} alt="svg" className="w-64 h-64 mb-4" />
+      <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+        Back to Home
+      </button>
     </div>
   );
 }

@@ -2,41 +2,51 @@ import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 const Navbar = () => {
-  const [nav, setNav] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
 
-  const handleNav = () => {
-    setNav(!nav);
+  const toggleNav = () => {
+    setNavOpen(!navOpen);
   };
+
   return (
-    <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white">
-      <h1 className="w-full text-3xl font-bold text-[#00df9a]">FitPro.</h1>
-      <ul className="hidden md:flex text-[#00df9a]">
-        <li className="p-4">Home</li>
-        <li className="p-4">Company</li>
-        <li className="p-4">About</li>
-        <li className="p-4">Contact</li>
-      </ul>
-      <div onClick={handleNav} className="block md:hidden">
-        {!nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
-      </div>
-      <div
-        className={
-          !nav
-            ? "fixed left-0 top-0 w-[60%] f-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500"
-            : "fixed left-[-100%]"
-        }
-      >
-        <h1 className="w-full text-3xl font-bold text-[#00df9a] m-4">
-          FitPro.
+    <nav className="bg-black text-white" style={{ position: "fixed", width: "100%", zIndex: 100 }}>
+      <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
+        <h1 className="text-3xl font-bold" style={{ color: "#FF6B6B" }}>
+          <span style={{ color: "#FF6B6B" }}>F</span>
+          <span style={{ color: "#FFD56B" }}>i</span>
+          <span style={{ color: "#FF6B6B" }}>t</span>
+          <span style={{ color: "#FFD56B" }}>P</span>
+          <span style={{ color: "#FF6B6B" }}>r</span>
+          <span style={{ color: "#FFD56B" }}>o</span>
+          <span style={{ color: "#FF6B6B" }}>.</span>
         </h1>
-        <ul className="uppercase p-4">
-          <li className="p-4 border-b border-gray-600">Home</li>
-          <li className="p-4 border-b border-gray-600">Company</li>
-          <li className="p-4 border-b border-gray-600">About</li>
-          <li className="p-4">Contact</li>
+        <div className="md:hidden">
+          <button onClick={toggleNav}>
+            {navOpen ? (
+              <AiOutlineClose size={24} />
+            ) : (
+              <AiOutlineMenu size={24} />
+            )}
+          </button>
+        </div>
+        <ul className="hidden md:flex space-x-4">
+          <li className="nav-item hover:text-[#FF6B6B]">Home</li>
+          <li className="nav-item hover:text-[#FF6B6B]">Company</li>
+          <li className="nav-item hover:text-[#FF6B6B]">About</li>
+          <li className="nav-item hover:text-[#FF6B6B]">Contact</li>
         </ul>
       </div>
-    </div>
+      {navOpen && (
+        <div className="bg-black md:hidden">
+          <ul className="py-4 text-center">
+            <li className="py-2 border-b border-gray-600">Home</li>
+            <li className="py-2 border-b border-gray-600">Company</li>
+            <li className="py-2 border-b border-gray-600">About</li>
+            <li className="py-2">Contact</li>
+          </ul>
+        </div>
+      )}
+    </nav>
   );
 };
 

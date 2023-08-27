@@ -1,40 +1,44 @@
-// src/components/Home.jsx
 import React from "react";
+import Typed from "react-typed";
 
 const Home = () => {
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <header className="bg-blue-500 p-6">
-        <div className="container mx-auto">
-          <h1 className="text-white text-3xl font-semibold">
-            Welcome to Fitness Pro
-          </h1>
-          <p className="mt-2 text-white">
-            Your journey to a healthier lifestyle starts here!
-          </p>
-        </div>
-      </header>
-      <main className="container mx-auto p-8">
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-6 rounded shadow-md">
-            <h2 className="text-xl font-semibold mb-2">Personal Training</h2>
-            <p>
-              Our experienced trainers are here to guide you through your
-              fitness journey with personalized training plans.
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded shadow-md">
-            <h2 className="text-xl font-semibold mb-2">Nutrition Plans</h2>
-            <p>
-              Achieve your fitness goals faster with our expert-designed
-              nutrition plans tailored to your needs.
-            </p>
-          </div>
-        </section>
-      </main>
-      <footer className="bg-gray-200 p-4 text-center">
-        <p>&copy; 2023 Fitness Pro. All rights reserved.</p>
-      </footer>
+    <div
+      className="text-white relative"
+      style={{
+        background: "url('https://images.unsplash.com/photo-1522898467493-49726bf28798?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center fixed",
+        backgroundSize: "cover",
+        height: "100vh",
+      }}
+    >
+      <div
+        className="flex flex-col h-full mx-auto text-center justify-start bg-black bg-opacity-60"
+        style={{ paddingTop: "5rem" }} // Adjust this value based on your navigation bar's height
+      >
+        <p className="text-[#FA2E56] font-bold p-2">
+          ACHIEVE YOUR FITNESS GOALS
+        </p>
+        <h1 className="md:text-7xl sm:text-6xl text-4xl font-bold md:py-6">
+          <span className="text-[#FF6B6B]">Elevate Your Health.</span>
+        </h1>
+        <p className="md:text-5xl sm:text-4xl text-xl font-bold py-4 text-black">
+          <span className="text-gray-400">Tailored workouts and nutrition plans for</span>{" "}
+          <Typed
+            className="inline-block text-white"
+            strings={["Strength", "Endurance", "Wellness"]}
+            typeSpeed={120}
+            backSpeed={140}
+            loop
+          />
+        </p>
+        <p className="md:text-2xl text-xl font-bold text-gray-500">
+          Achieve your fitness goals with personalized plans for strength,
+          endurance, and overall wellness.
+        </p>
+        <button className="bg-gradient-to-r from-[#FF6B6B] to-[#FFD56B] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-black">
+          Get Started
+        </button>
+      </div>
     </div>
   );
 };

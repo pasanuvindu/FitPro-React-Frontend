@@ -1,4 +1,12 @@
-// export const CREATE = "CREATE";
-// export const UPDATE = "UPDATE";
-// export const DELETE = "DELETE";
-// export const FETCH_ALL = "FETCH_ALL";
+// actionTypes.js
+
+//MESSAGE
+export const SHOW_MESSAGE = "SHOW_MESSAGE";
+export const HIDE_MESSAGE = "HIDE_MESSAGE";
+
+// Define action types
+export const CALCULATE_BMI = "CALCULATE_BMI";
+export const CALCULATE_BMI_SUCCESS = "CALCULATE_BMI_SUCCESS";
+export const CALCULATE_BMI_ERROR = "CALCULATE_BMI_ERROR";
+
+export const FETCH_WORKOUTS = "FETCH_WORKOUTS";
