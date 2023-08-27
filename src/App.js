@@ -3,13 +3,13 @@ import Layout from "./components/Layout/Layout";
 import NotFound from "./components/NotFound";
 import Home from "./components/Home";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-// import Navbar from "./components/Navbar";
 import BMICalculator from "./components/BmiCal";
 import Login from "./components/Login/Login";
 import Workout from "./components/Workout";
 import WorkoutList from "./components/WorkoutList";
 import WorkoutFrame from "./components/WorkoutFrame";
 import Hero from "./components/Hero";
+import Diet from "./components/Diet";
 
 function App() {
   return (
@@ -23,10 +23,21 @@ function App() {
             <Route path="/bmi" element={<BMICalculator />} />
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/workout" element={<Workout />} />
-            <Route path="/workoutlist" element={<WorkoutList />} />
-            {/* <Route path="/workoutframe" element={<WorkoutFrame />} /> */}
+
+            {/* Updated routes */}
+            <Route path="/workout" element={<Workout />}>
+              <Route
+                path="home-workout"
+                element={<WorkoutList filter="home" />}
+              />
+              <Route
+                path="gym-workout"
+                element={<WorkoutList filter="gym" />}
+              />
+            </Route>
+
             <Route path="/workoutframe/:workoutId" element={<WorkoutFrame />} />
+            <Route path="/diet" element={<Diet />} />
           </Routes>
         </Layout>
       </Router>

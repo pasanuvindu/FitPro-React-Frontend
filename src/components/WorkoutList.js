@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getWorkouts } from "../actions/workout"; // Adjust the path as needed
-import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
+import { useLocation, useNavigate } from "react-router-dom"; // Import the useNavigate hook
 
 const WorkoutCard = ({ workout }) => {
   const navigate = useNavigate(); // Initialize the useNavigate hook
@@ -39,17 +39,28 @@ const WorkoutCard = ({ workout }) => {
 
 const WorkoutList = () => {
   const dispatch = useDispatch();
-  const workoutData = useSelector((state) => state.workouts); // Assuming you've named your reducer 'workouts'
+  const workoutData = useSelector((state) => state.workouts);
+  const location = useLocation(); // Get the current location
+  const queryParams = new URLSearchParams(location.search); // Get query parameters
+  const filter = queryParams.get("filter"); // Get the 'filter' parameter value
 
   useEffect(() => {
-    dispatch(getWorkouts()); // Dispatch the action to fetch workouts when the component mounts
+    dispatch(getWorkouts());
   }, [dispatch]);
+
+  const filteredWorkouts = filter
+    ? workoutData.filter(
+        (workout) => workout.workoutPlace.toLowerCase() === filter
+      )
+    : workoutData;
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white w-full max-w-3xl p-8 rounded-xl shadow-xl">
-        <div className="text-2xl font-bold mb-6">Your Home Workouts</div>
-        {workoutData.map((workout, index) => (
+        <div className="text-2xl font-bold mb-6">
+          {filter === "home" ? "Your Home Workouts" : "Your Gym Workouts"}
+        </div>
+        {filteredWorkouts.map((workout, index) => (
           <WorkoutCard key={index} workout={workout} />
         ))}
       </div>
