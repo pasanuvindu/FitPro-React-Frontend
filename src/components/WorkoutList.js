@@ -1,10 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getWorkouts } from "../actions/workout"; // Adjust the path as needed
-import { useLocation, useNavigate } from "react-router-dom"; // Import the useNavigate hook
+import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
 
 const WorkoutCard = ({ workout }) => {
   const navigate = useNavigate(); // Initialize the useNavigate hook
+
+  // var qs = parse_query_string(query);
+  // alert(qs);
+
+  // Gym;
+  // const curWorkOuts =
 
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md flex">
@@ -19,7 +25,7 @@ const WorkoutCard = ({ workout }) => {
           <span>{workout.duration}min</span>
           <span>|</span>
           <span>Intensity</span>
-          {Array.from({ length: workout.intensity }).map((_, index) => (
+          {Array.from({ length: workout?.intensity }).map((_, index) => (
             <span
               key={index}
               className="w-2 h-2 bg-gray-400 rounded-full"
@@ -39,28 +45,23 @@ const WorkoutCard = ({ workout }) => {
 
 const WorkoutList = () => {
   const dispatch = useDispatch();
-  const workoutData = useSelector((state) => state.workouts);
-  const location = useLocation(); // Get the current location
-  const queryParams = new URLSearchParams(location.search); // Get query parameters
-  const filter = queryParams.get("filter"); // Get the 'filter' parameter value
+  const wotype = window.location.search.substring("workoutPlace").split("=")[1];
+  // const workoutData = useSelector((state) =>
+  //   state.workouts.find((wo) => (wo.workoutPlace = "Gym"))
+
+  const workoutData = useSelector((state) =>
+    state.workouts.filter((w) => w.workoutPlace === wotype)
+  ); // Assuming you've named your reducer 'workouts'
 
   useEffect(() => {
-    dispatch(getWorkouts());
+    dispatch(getWorkouts()); // Dispatch the action to fetch workouts when the component mounts
   }, [dispatch]);
-
-  const filteredWorkouts = filter
-    ? workoutData.filter(
-        (workout) => workout.workoutPlace.toLowerCase() === filter
-      )
-    : workoutData;
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white w-full max-w-3xl p-8 rounded-xl shadow-xl">
-        <div className="text-2xl font-bold mb-6">
-          {filter === "home" ? "Your Home Workouts" : "Your Gym Workouts"}
-        </div>
-        {filteredWorkouts.map((workout, index) => (
+        <div className="text-2xl font-bold mb-6">Your Home Workouts</div>
+        {workoutData?.map((workout, index) => (
           <WorkoutCard key={index} workout={workout} />
         ))}
       </div>

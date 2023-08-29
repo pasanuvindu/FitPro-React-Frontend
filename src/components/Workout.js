@@ -30,13 +30,13 @@ const Workout = () => {
 
         <div className="flex items-center justify-center space-x-4">
           <Link
-            to="/workouts?workoutPlace=Home"
+            to="/workoutlist?workoutPlace=Home"
             className="px-6 py-3 text-white bg-gradient-to-r from-pink-600 to-pink-400 hover:from-pink-500 hover:to-pink-300 rounded-lg font-semibold"
           >
             Home Workout
           </Link>
           <Link
-            to="/workouts?workoutPlace=Gym"
+            to="/workoutlist?workoutPlace=Gym"
             className="px-6 py-3 text-white bg-gradient-to-r from-orange-600 to-orange-400 hover:from-orange-500 hover:to-orange-300 rounded-lg font-semibold"
           >
             Gym Workout

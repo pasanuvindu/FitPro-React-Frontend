@@ -6,6 +6,7 @@ import thunk from "redux-thunk";
 
 import bmicalculatorReducer from "./reducers/bmicalculatorSlice";
 import workoutsReducer from "./reducers/workouts"; // Corrected import
+import dietsReducer from "./reducers/diets";
 
 import { createRoot } from "react-dom/client";
 import "./index.css";
@@ -15,6 +16,7 @@ const store = configureStore({
   reducer: {
     bmicalculator: bmicalculatorReducer,
     workouts: workoutsReducer,
+    diets: dietsReducer,
   },
   middleware: [thunk],
 });

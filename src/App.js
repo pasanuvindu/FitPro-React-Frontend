@@ -14,6 +14,7 @@ import WorkoutList from "./components/WorkoutList";
 import WorkoutFrame from "./components/WorkoutFrame";
 import Hero from "./components/Hero";
 import Diet from "./components/Diet";
+import DietList from "./components/DietList";
 
 function App() {
   return (
@@ -28,8 +29,11 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
 
+            <Route path="/workout" element={<Workout />} />
+            <Route path="/workoutlist" element={<WorkoutList />} />
+
             {/* Updated routes */}
-            <Route path="/workout" element={<Workout />}>
+            {/* <Route path="/workout" element={<Workout />}>
               <Route
                 path="home-workout"
                 element={<WorkoutList filter="home" />}
@@ -38,7 +42,7 @@ function App() {
                 path="gym-workout"
                 element={<WorkoutList filter="gym" />}
               />
-            </Route>
+            </Route> */}
 
             <Route path="/workoutframe/:workoutId" element={<WorkoutFrame />} />
             <Route path="/uploadImg" element={<UploadImage />} />
@@ -46,6 +50,7 @@ function App() {
             <Route path="/dietTracker" element={<DietTracker />} />
             <Route path="/workoutTracker" element={<WorkoutTracker />} />
             <Route path="/diet" element={<Diet />} />
+            <Route path="/dietlist" element={<DietList />} />
           </Routes>
         </Layout>
       </Router>
