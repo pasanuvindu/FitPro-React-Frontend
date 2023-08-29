@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Message from "../Controls/Message";
-import logo from "../assets/fitness-gym-logo.png";
 
 const Layout = ({ children }) => {
   const message = useSelector((state) => state.message);

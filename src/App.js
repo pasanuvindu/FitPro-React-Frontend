@@ -5,7 +5,6 @@ import Home from "./components/Home";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import BMICalculator from "./components/BmiCal";
 import Login from "./components/Login/Login";
-import { UploadImage } from "./components/UploadImage/UploadImage";
 import WorkoutMain from "./components/WorkoutTracker/WorkoutMain";
 import DietTracker from "./components/WorkoutTracker/DietTracker";
 import WorkoutTracker from "./components/WorkoutTracker/WorkoutTracker";
@@ -13,7 +12,10 @@ import Workout from "./components/Workout";
 import WorkoutList from "./components/WorkoutList";
 import WorkoutFrame from "./components/WorkoutFrame";
 import Hero from "./components/Hero";
+import ImagePicker from "./components/UploadImage/ImagePicker";
 import Diet from "./components/Diet";
+import DailyWorkout from "./components/WorkoutTracker/DailyWorkout";
+import MonthlyWorkout from "./components/WorkoutTracker/MonthlyWorkout";
 import DietList from "./components/DietList";
 
 function App() {
@@ -45,11 +47,13 @@ function App() {
             </Route> */}
 
             <Route path="/workoutframe/:workoutId" element={<WorkoutFrame />} />
-            <Route path="/uploadImg" element={<UploadImage />} />
-            <Route path="/workout" element={<WorkoutMain />} />
+            <Route path="/uploadImg" element={<ImagePicker />} />
+            <Route path="/workoutTypes" element={<WorkoutMain />} />
             <Route path="/dietTracker" element={<DietTracker />} />
             <Route path="/workoutTracker" element={<WorkoutTracker />} />
             <Route path="/diet" element={<Diet />} />
+            <Route path="/monthlyWorkout" element={<MonthlyWorkout />} />
+            <Route path="/dailyWorkout" element={<DailyWorkout />} />
             <Route path="/dietlist" element={<DietList />} />
           </Routes>
         </Layout>

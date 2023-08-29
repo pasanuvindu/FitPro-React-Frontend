@@ -17,11 +17,9 @@ function WorkoutTypes(props) {
           <div className="p-2 text-center">
             <h2 className="font-bold text-lg mb-2">{props.header}</h2>
             <p className="text-sm text-gray-600">
-              Simple Yet Beautiful Card Design with TaiwlindCss. Subscribe to
-              our Youtube channel for more ...
+             {props.desc}
             </p>
           </div>
-          {/* CTA */}
           <div className="m-3">
             <a
               role="button"
