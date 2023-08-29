@@ -11,6 +11,8 @@ function WorkoutMain() {
   const buttondiet = "Go to Diet Tracker";
   const linkWorkout = "/workoutTracker";
   const linkDiet = "/dietTracker";
+  const desc1 = "You will get the progress of the monthly and daily workouts related through this tracker"
+  const desc2 = "You will get the progress related to the diets which you have gained through this tracker"
   return (
     <div>
       <div className="bg-gray-100 w-full min-h-screen flex justify-center items-center">
@@ -20,12 +22,14 @@ function WorkoutMain() {
             header={workoutHeader}
             button={buttonWorkout}
             link={linkWorkout}
+            desc= {desc1}
           />
           <WorkoutTypes
             image={dietWorkout}
             header={dietHeader}
             button={buttondiet}
             link={linkDiet}
+            desc = {desc2}
           />
         </div>
       </div>

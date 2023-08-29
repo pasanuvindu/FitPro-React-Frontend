@@ -14,6 +14,8 @@ import WorkoutFrame from "./components/WorkoutFrame";
 import Hero from "./components/Hero";
 import ImagePicker from "./components/UploadImage/ImagePicker";
 import Diet from "./components/Diet";
+import DailyWorkout from "./components/WorkoutTracker/DailyWorkout";
+import MonthlyWorkout from "./components/WorkoutTracker/MonthlyWorkout";
 
 function App() {
   return (
@@ -39,11 +41,13 @@ function App() {
               />
             </Route>
             <Route path="/workoutframe/:workoutId" element={<WorkoutFrame />} />
-            <Route path="/uploadImg" element={<ImagePicker/>} />
+            <Route path="/uploadImg" element={<ImagePicker />} />
             <Route path="/workoutTypes" element={<WorkoutMain />} />
             <Route path="/dietTracker" element={<DietTracker />} />
             <Route path="/workoutTracker" element={<WorkoutTracker />} />
             <Route path="/diet" element={<Diet />} />
+            <Route path ="/monthlyWorkout" element={<MonthlyWorkout/>}/>
+            <Route path ="/dailyWorkout" element={<DailyWorkout/>}/>
           </Routes>
         </Layout>
       </Router>

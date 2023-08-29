@@ -12,19 +12,11 @@ import Typography from "@mui/material/Typography";
 function ImagePicker() {
   const [image, setImage] = useState(null);
   const [fileName, setFileName] = useState("No selected file");
-  const bull = (
-    <Box
-      component="span"
-      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-    >
-      •
-    </Box>
-  );
   const styles = {
     card: {
-      width: "1100px", // Adjust width as needed
-      height: "640px", // Adjust height as needed
-      backgroundColor: "ash", // Replace with the desired color
+      width: "1100px", 
+      height: "640px", 
+      backgroundColor: "ash",
     },
   };
 
