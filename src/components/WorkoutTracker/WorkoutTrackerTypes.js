@@ -36,10 +36,10 @@ function WorkoutTrackerTypes() {
       </div>
 
       <div className="relative max-w-xs overflow-hidden rounded-2xl shadow-lg group flex-wrap flex justify-center items-center">
-        <Link to="/progressStats">
+        <Link to="/progressStat">
           <button className="daily-button">
             <img
-              src="https://images.unsplash.com/photo-1550345332-09e3ac987658?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+              src="https://images.unsplash.com/photo-1577221084712-45b0445d2b00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1898&q=80"
               className="transition-transform group-hover:scale-110 duration-200"
               alt="Daily Progress"
             ></img>

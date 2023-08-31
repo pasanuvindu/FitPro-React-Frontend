@@ -36,7 +36,14 @@ function MonthlyWorkout() {
   const classes = useStyles();
   const [records, setRecords] = useState({});
   useEffect(() => {
-    const apiURL=`http://localhost:5000/api/getDailyProgress/2023-08-25`;
+  const currentDate = new Date();
+  const firstDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+  const lastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+
+  const formattedFirstDate = firstDate.toISOString().split("T")[0];
+  const formattedLastDate = lastDate.toISOString().split("T")[0];
+
+    const apiURL=`http://localhost:5000/api/getTotalMonthlyProgress/${formattedFirstDate}/${formattedLastDate}`;
     axios.get(apiURL).then((response)=>{
           if(response.data){
             setRecords(response.data)
@@ -79,13 +86,13 @@ function MonthlyWorkout() {
                 </Typography>
                 <br/><br/><br/><br/>
                 <Typography variant="body1" color="textSecondary">
-                   Progress: {records.progress}%
+                   Total Monthly Burned Calories: {records.totalBurnedCalories}
                 </Typography>
-                <Typography variant="body1" color="textSecondary">
+                {/* <Typography variant="body1" color="textSecondary">
                    Burned Calories: {records.burnedCalories}
-                </Typography>
+                </Typography> */}
                 <Typography variant="body1" color="textSecondary">
-                   Total Reserved Calories: {records.totalReservedCalories}
+                   Total Reserved Calories: {records.totalCalories}
                 </Typography>
               </CardContent>
             </Card>

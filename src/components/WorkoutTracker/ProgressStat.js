@@ -44,8 +44,6 @@ const ProgressStat = () => {
 
     const formattedStartDate = startOfWeek.toISOString().split("T")[0];
     const formattedEndDate = endOfWeek.toISOString().split("T")[0];
-    console.log("start", formattedStartDate);
-    console.log("end", formattedEndDate);
 
     axios
       .get(
