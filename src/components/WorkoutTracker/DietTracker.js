@@ -182,7 +182,7 @@ function DietTracker() {
 
               <div>
                 <img
-                  src={DietImg} // Replace with the actual image URL
+                  src={DietImg} 
                   alt="Diet Tracker"
                   className="image-container"
                   style={{
@@ -218,7 +218,7 @@ function DietTracker() {
               </Typography>
               <div>
                 <img
-                  src={LunchImg} // Replace with the actual image URL
+                  src={LunchImg} 
                   alt="Diet Tracker"
                   className="image-container"
                   style={{
@@ -256,7 +256,7 @@ function DietTracker() {
               </Typography>
               <div>
                 <img
-                  src={DinnerImg} // Replace with the actual image URL
+                  src={DinnerImg} 
                   alt="Diet Tracker"
                   className="image-container"
                   style={{
@@ -290,7 +290,7 @@ function DietTracker() {
                   </Typography>
                   <div>
                     <img
-                      src={DietImg} // Replace with the actual image URL
+                      src={DietImg} 
                       alt="Diet Tracker"
                       className="image-container"
                       style={{
@@ -302,7 +302,7 @@ function DietTracker() {
                   </div>
                   <div className="image-container">
                     <img
-                      src="your-image-url.jpg" // Replace with the actual image URL
+                      src="your-image-url.jpg" 
                       alt=""
                       className="side-image"
                     />
@@ -328,7 +328,7 @@ function DietTracker() {
                   </Typography>
                   <div>
                     <img
-                      src={DietImg} // Replace with the actual image URL
+                      src={DietImg} 
                       alt="Diet Tracker"
                       className="image-container"
                       style={{
@@ -359,7 +359,7 @@ function DietTracker() {
                   </Typography>
                   <div>
                     <img
-                      src={DietImg} // Replace with the actual image URL
+                      src={DietImg} 
                       alt="Diet Tracker"
                       className="image-container"
                       style={{
@@ -390,7 +390,7 @@ function DietTracker() {
                   </Typography>
                   <div>
                     <img
-                      src={DietImg} // Replace with the actual image URL
+                      src={DietImg} 
                       alt="Diet Tracker"
                       className="image-container"
                       style={{
