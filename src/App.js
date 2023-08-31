@@ -17,6 +17,7 @@ import Diet from "./components/Diet";
 import DailyWorkout from "./components/WorkoutTracker/DailyWorkout";
 import MonthlyWorkout from "./components/WorkoutTracker/MonthlyWorkout";
 import DietList from "./components/DietList";
+import ProgressStat from "./components/WorkoutTracker/ProgressStat";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
             <Route path="/monthlyWorkout" element={<MonthlyWorkout />} />
             <Route path="/dailyWorkout" element={<DailyWorkout />} />
             <Route path="/dietlist" element={<DietList />} />
+            <Route path="/progressStat" element={<ProgressStat/>}/>
           </Routes>
         </Layout>
       </Router>
