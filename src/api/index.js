@@ -25,6 +25,9 @@ export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 // Workout APIs
 export const fetchWorkouts = () => API.get("/workouts");
 
+// Diet APIs
+export const fetchDiets = () => API.get("/diets");
+
 // // Common APIs
 // export const calculateDistance = (longLat) =>
 //   API.post("/common/calculateDistance", longLat);

@@ -16,6 +16,7 @@ import ImagePicker from "./components/UploadImage/ImagePicker";
 import Diet from "./components/Diet";
 import DailyWorkout from "./components/WorkoutTracker/DailyWorkout";
 import MonthlyWorkout from "./components/WorkoutTracker/MonthlyWorkout";
+import DietList from "./components/DietList";
 
 function App() {
   return (
@@ -29,8 +30,12 @@ function App() {
             <Route path="/bmi" element={<BMICalculator />} />
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
+
+            <Route path="/workout" element={<Workout />} />
+            <Route path="/workoutlist" element={<WorkoutList />} />
+
             {/* Updated routes */}
-            <Route path="/workout" element={<Workout />}>
+            {/* <Route path="/workout" element={<Workout />}>
               <Route
                 path="home-workout"
                 element={<WorkoutList filter="home" />}
@@ -39,15 +44,17 @@ function App() {
                 path="gym-workout"
                 element={<WorkoutList filter="gym" />}
               />
-            </Route>
+            </Route> */}
+
             <Route path="/workoutframe/:workoutId" element={<WorkoutFrame />} />
             <Route path="/uploadImg" element={<ImagePicker />} />
             <Route path="/workoutTypes" element={<WorkoutMain />} />
             <Route path="/dietTracker" element={<DietTracker />} />
             <Route path="/workoutTracker" element={<WorkoutTracker />} />
             <Route path="/diet" element={<Diet />} />
-            <Route path ="/monthlyWorkout" element={<MonthlyWorkout/>}/>
-            <Route path ="/dailyWorkout" element={<DailyWorkout/>}/>
+            <Route path="/monthlyWorkout" element={<MonthlyWorkout />} />
+            <Route path="/dailyWorkout" element={<DailyWorkout />} />
+            <Route path="/dietlist" element={<DietList />} />
           </Routes>
         </Layout>
       </Router>
