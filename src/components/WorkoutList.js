@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
 const WorkoutCard = ({ workout }) => {
   const navigate = useNavigate(); // Initialize the useNavigate hook
 
+  // console.log(workout);
+
   // var qs = parse_query_string(query);
   // alert(qs);
 
@@ -46,8 +48,6 @@ const WorkoutCard = ({ workout }) => {
 const WorkoutList = () => {
   const dispatch = useDispatch();
   const wotype = window.location.search.substring("workoutPlace").split("=")[1];
-  // const workoutData = useSelector((state) =>
-  //   state.workouts.find((wo) => (wo.workoutPlace = "Gym"))
 
   const workoutData = useSelector((state) =>
     state.workouts.filter((w) => w.workoutPlace === wotype)

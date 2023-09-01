@@ -34,18 +34,6 @@ function App() {
             <Route path="/workout" element={<Workout />} />
             <Route path="/workoutlist" element={<WorkoutList />} />
 
-            {/* Updated routes */}
-            {/* <Route path="/workout" element={<Workout />}>
-              <Route
-                path="home-workout"
-                element={<WorkoutList filter="home" />}
-              />
-              <Route
-                path="gym-workout"
-                element={<WorkoutList filter="gym" />}
-              />
-            </Route> */}
-
             <Route path="/workoutframe/:workoutId" element={<WorkoutFrame />} />
             <Route path="/uploadImg" element={<ImagePicker />} />
             <Route path="/workoutTypes" element={<WorkoutMain />} />
