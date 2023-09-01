@@ -1,8 +1,7 @@
-.diet-container{
-    margin-left: 423px;
+.diet-container {
+  display: flex;
+  flex-direction: column;
+  
 }
 
-.image-container {
-    width: 1;
-    height: 12px;
-}
+
