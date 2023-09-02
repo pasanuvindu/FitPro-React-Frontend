@@ -308,7 +308,7 @@ function DietTracker() {
                     />
                   </div>
                   <Typography variant="body1" color="textSecondary">
-                    Calories Count (g): {status.Calories}
+                    Calories Count (Cal): {status.Calories}
                   </Typography>
                   <Typography variant="body1" color="textSecondary">
                     {/* Burned Calories: {records.burnedCalories} */}
@@ -339,7 +339,7 @@ function DietTracker() {
                     />
                   </div>
                   <Typography variant="body1" color="textSecondary">
-                    Carbs Count (g): {status.Calories}
+                    Carbs Count (Cal): {status.Calories}
                   </Typography>
                   <Typography variant="body1" color="textSecondary">
                     {/* Burned Calories: {records.burnedCalories} */}
@@ -370,7 +370,7 @@ function DietTracker() {
                     />
                   </div>
                   <Typography variant="body1" color="textSecondary">
-                    Protein Count (g): {status.Protein}
+                    Protein Count (Cal): {status.Protein}
                   </Typography>
                   <Typography variant="body1" color="textSecondary">
                     {/* Burned Calories: {records.burnedCalories} */}
@@ -401,7 +401,7 @@ function DietTracker() {
                     />
                   </div>
                   <Typography variant="body1" color="textSecondary">
-                    Fats Count (g): {status.Fats}
+                    Fats Count (Cal): {status.Fats}
                   </Typography>
                   <Typography variant="body1" color="textSecondary">
                     {/* Burned Calories: {records.burnedCalories} */}

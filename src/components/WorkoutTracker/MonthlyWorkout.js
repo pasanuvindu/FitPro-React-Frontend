@@ -43,9 +43,14 @@ function MonthlyWorkout() {
   const formattedFirstDate = firstDate.toISOString().split("T")[0];
   const formattedLastDate = lastDate.toISOString().split("T")[0];
 
+  console.log(formattedFirstDate);
+  console.log(formattedLastDate);
+  
     const apiURL=`http://localhost:5000/api/getTotalMonthlyProgress/${formattedFirstDate}/${formattedLastDate}`;
     axios.get(apiURL).then((response)=>{
           if(response.data){
+            console.log(formattedFirstDate);
+            console.log(formattedLastDate);
             setRecords(response.data)
           }
     });
