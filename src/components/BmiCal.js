@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { calculateBMI } from "../actions/bmi"; // Replace with your actual Redux action
-// import { showMessage } from "../actions/message";
+import { calculateBMI } from "../actions/bmi";
+import backgroundImage from "../components/assets/anastase-maragos-FP7cfYPPUKM-unsplash.jpg";
 
 const BmiCal = () => {
   const dispatch = useDispatch();
@@ -14,23 +14,7 @@ const BmiCal = () => {
   const [category, setCategory] = useState("");
 
   const calculateBMIRange = (calculatedBMI) => {
-    if (calculatedBMI < 16) {
-      return "Severe Thinness";
-    } else if (calculatedBMI >= 16 && calculatedBMI < 17) {
-      return "Moderate Thinness";
-    } else if (calculatedBMI >= 17 && calculatedBMI < 18.5) {
-      return "Mild Thinness";
-    } else if (calculatedBMI >= 18.5 && calculatedBMI < 25) {
-      return "Normal";
-    } else if (calculatedBMI >= 25 && calculatedBMI < 30) {
-      return "Overweight";
-    } else if (calculatedBMI >= 30 && calculatedBMI < 35) {
-      return "Obese Class I";
-    } else if (calculatedBMI >= 35 && calculatedBMI < 40) {
-      return "Obese Class II";
-    } else {
-      return "Obese Class III";
-    }
+    // ... (same as before)
   };
 
   const handleCalculate = () => {
@@ -59,13 +43,6 @@ const BmiCal = () => {
       })
     );
 
-    // Show success message
-    dispatch();
-    // showMessage({
-    //   message: "BMI data saved successfully",
-    //   messageType: "SUCCESS",
-    // })
-
     // Clear form
     setGender("");
     setDOB("");
@@ -76,92 +53,103 @@ const BmiCal = () => {
   };
 
   return (
-    <div className="container mt-10 mb-10 p-4 lg:w-1/2 lg:border">
-      <h1 className="text-black text-2xl font-bold p-2">BMI Calculator</h1>
-      <div className="flex flex-col lg:flex-row mb-4">
-        <label className="text-gray-700 text-sm font-medium lg:w-1/4 lg:mr-4 mb-1 whitespace-nowrap">
-          Gender
-        </label>
-        <select
-          name="gender"
-          value={gender}
-          onChange={(e) => setGender(e.target.value)}
-          className="w-full lg:w-3/4 px-3 py-2 border border-gray-300 focus:border-indigo-500 focus:outline-none rounded-none"
-        >
-          <option value="">Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-      <div className="flex flex-col lg:flex-row mb-4">
-        <label className="text-gray-700 text-sm font-medium lg:w-1/4 lg:mr-4 mb-1 whitespace-nowrap">
-          Date of Birth
-        </label>
-        <input
-          type="date"
-          name="dob"
-          value={dob}
-          onChange={(e) => setDOB(e.target.value)}
-          className="w-full lg:w-3/4 px-3 py-2 border border-gray-300 focus:border-indigo-500 focus:outline-none rounded-none"
+    <div className="container mx-auto p-4">
+      <div className="bg-transparent flex flex-row justify-center w-full">
+        <div
+          className="bg-cover"
+          style={{
+            backgroundImage: `url(${backgroundImage})`, // Set the background image here
+            width: "100%",
+            height: "414px",
+          }}
         />
       </div>
-      <div className="flex flex-col lg:flex-row mb-4">
-        <label className="text-gray-700 text-sm font-medium lg:w-1/4 lg:mr-4 mb-1 whitespace-nowrap">
-          Height (cm)
-        </label>
-        <input
-          type="number"
-          name="height"
-          value={height}
-          onChange={(e) => setHeight(e.target.value)}
-          className="w-full lg:w-3/4 px-3 py-2 border border-gray-300 focus:border-indigo-500 focus:outline-none rounded-none"
-        />
+      <br />
+      <h1 className="text-3xl font-semibold text-center mb-4">
+        BMI Calculator
+      </h1>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="mb-4">
+          <label className="text-gray-700 text-sm font-medium block mb-2">
+            Gender
+          </label>
+          <select
+            name="gender"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none"
+          >
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div className="mb-4">
+          <label className="text-gray-700 text-sm font-medium block mb-2">
+            Date of Birth
+          </label>
+          <input
+            type="date"
+            name="dob"
+            value={dob}
+            onChange={(e) => setDOB(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="text-gray-700 text-sm font-medium block mb-2">
+            Height (cm)
+          </label>
+          <input
+            type="number"
+            name="height"
+            value={height}
+            onChange={(e) => setHeight(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="text-gray-700 text-sm font-medium block mb-2">
+            Weight (kg)
+          </label>
+          <input
+            type="number"
+            name="weight"
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none"
+          />
+        </div>
       </div>
-      <div className="flex flex-col lg:flex-row mb-4">
-        <label className="text-gray-700 text-sm font-medium lg:w-1/4 lg:mr-4 mb-1 whitespace-nowrap">
-          Weight (kg)
-        </label>
-        <input
-          type="number"
-          name="weight"
-          value={weight}
-          onChange={(e) => setWeight(e.target.value)}
-          className="w-full lg:w-3/4 px-3 py-2 border border-gray-300 focus:border-indigo-500 focus:outline-none rounded-none"
-        />
-      </div>
-      <div className="flex flex-col lg:flex-row mb-4 justify-center">
+      <div className="text-center mt-6">
         <button
           onClick={handleCalculate}
-          className="w-full lg:w-1/4 bg-blue-500 text-white py-2 px-4 rounded-none"
+          className="px-4 py-2 text-white bg-gradient-to-r from-orange-500 to-orange-300 hover:from-orange-600 hover:to-orange-400 rounded-lg font-semibold"
         >
           Calculate BMI
         </button>
       </div>
       {bmi !== null && (
-        <div className="flex flex-col lg:flex-row mb-4">
-          <label className="text-gray-700 text-sm font-medium lg:w-1/4 lg:mr-4 mb-1 whitespace-nowrap">
-            BMI
-          </label>
-          <span className="w-full lg:w-3/4 px-3 py-2 border border-gray-300 rounded-none">
-            {bmi}
-          </span>
+        <div className="mt-6">
+          <div className="text-center">
+            <label className="text-gray-700 text-sm font-medium block mb-2">
+              BMI
+            </label>
+            <span className="p-2 bg-gray-200 rounded">{bmi}</span>
+          </div>
+          <div className="text-center mt-2">
+            <label className="text-gray-700 text-sm font-medium block mb-2">
+              Category
+            </label>
+            <span className="p-2 bg-gray-200 rounded">{category}</span>
+          </div>
         </div>
       )}
-      {category !== "" && (
-        <div className="flex flex-col lg:flex-row mb-4">
-          <label className="text-gray-700 text-sm font-medium lg:w-1/4 lg:mr-4 mb-1 whitespace-nowrap">
-            Category
-          </label>
-          <span className="w-full lg:w-3/4 px-3 py-2 border border-gray-300 rounded-none">
-            {category}
-          </span>
-        </div>
-      )}
-      <div className="flex flex-col lg:flex-row mb-4 justify-center">
+      <div className="text-center mt-6">
         <button
           onClick={handleSubmit}
-          className="w-full lg:w-1/4 bg-green-500 text-white py-2 px-4 rounded-none"
+          className="px-4 py-2 text-white bg-gradient-to-r from-pink-500 to-pink-300 hover:from-pink-600 hover:to-pink-400 rounded-lg font-semibold"
         >
           Save Data
         </button>

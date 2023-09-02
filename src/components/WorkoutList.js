@@ -11,7 +11,7 @@ const WorkoutCard = ({ workout }) => {
   // var qs = parse_query_string(query);
   // alert(qs);
 
-  // Gym;
+  // Gym
   // const curWorkOuts =
 
   return (

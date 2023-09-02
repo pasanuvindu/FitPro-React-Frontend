@@ -16,7 +16,8 @@ import ImagePicker from "./components/UploadImage/ImagePicker";
 import Diet from "./components/Diet";
 import DailyWorkout from "./components/WorkoutTracker/DailyWorkout";
 import MonthlyWorkout from "./components/WorkoutTracker/MonthlyWorkout";
-import DietList from "./components/DietList";
+import DietListVeg from "./components/DietListVeg";
+import DietListNonVeg from "./components/DietListNonVeg";
 import ProgressStat from "./components/WorkoutTracker/ProgressStat";
 import WorkoutOverview from "./components/WorkotOverview";
 
@@ -44,9 +45,10 @@ function App() {
             <Route path="/diet" element={<Diet />} />
             <Route path="/monthlyWorkout" element={<MonthlyWorkout />} />
             <Route path="/dailyWorkout" element={<DailyWorkout />} />
-            <Route path="/dietlist" element={<DietList />} />
-            <Route path="/progressStat" element={<ProgressStat/>}/>
-            <Route path="/workoutOverview" element={<WorkoutOverview/>}/>
+            <Route path="/dietlistveg" element={<DietListVeg />} />
+            <Route path="/dietlistnonveg" element={<DietListNonVeg />} />
+            <Route path="/progressStat" element={<ProgressStat />} />
+            <Route path="/workoutOverview" element={<WorkoutOverview />} />
           </Routes>
         </Layout>
       </Router>

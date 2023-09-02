@@ -1,8 +1,20 @@
 import React from "react";
+import backgroundImage from "../components/assets/lily-banse--YHSwy6uqvk-unsplash.jpg";
 
 const Diet = () => {
+  const containerStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: "100vh", // Ensure the container takes up the full viewport height
+  };
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div style={containerStyle}>
       <div className="max-w-xl p-8 bg-white shadow-lg rounded-lg">
         <div className="text-center">
           <p className="text-xl font-bold mb-4">Choose Your Diet Plan</p>
@@ -14,13 +26,13 @@ const Diet = () => {
         </div>
         <div className="flex items-center justify-center space-x-4">
           <a
-            href="/dietlist?isVegan=true"
+            href="/dietlistveg?isVegan=true"
             className="px-6 py-3 text-white bg-gradient-to-r from-green-400 to-green-600 hover:from-green-300 hover:to-green-500 rounded-lg font-semibold"
           >
             Vegetarian
           </a>
           <a
-            href="/dietlist?isVegan=false"
+            href="/dietlistnonveg?isVegan=false"
             className="px-6 py-3 text-white bg-gradient-to-r from-red-400 to-red-600 hover:from-red-300 hover:to-red-500 rounded-lg font-semibold"
           >
             Non-Vegetarian

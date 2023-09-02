@@ -1,71 +1,4 @@
-// import React, { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getDiets } from "../actions/diet";
-// import { useNavigate } from "react-router-dom";
-
-// const DietCard = ({ diet }) => {
-//   const navigate = useNavigate();
-
-//   // console.log(diet);
-
-//   return (
-//     <div className="bg-white rounded-lg overflow-hidden shadow-md flex">
-//       <img
-//         className="w-24 h-24 object-cover"
-//         src={diet.image}
-//         alt={diet.dietName}
-//       />
-//       <div className="p-4 flex flex-col">
-//         <div className="text-xl font-semibold">{diet.dietName}</div>
-//         <div className="flex items-center space-x-2 mt-2 text-gray-600 text-sm">
-//           <span>{diet.duration}min</span>
-//           <span>|</span>
-//           <span>Intensity</span>
-//           {Array.from({ length: diet?.intensity }).map((_, index) => (
-//             <span
-//               key={index}
-//               className="w-2 h-2 bg-gray-400 rounded-full"
-//             ></span>
-//           ))}
-//         </div>
-//         <button
-//           className="mt-4 px-4 py-2 w-32 bg-gradient-to-r from-pink-500 to-orange-400 text-white font-medium rounded-full shadow-md flex-shrink-0"
-//           onClick={() => navigate(`/dietframe/${diet._id}`)}
-//         >
-//           START
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const DietList = () => {
-//   const dispatch = useDispatch();
-//   const mltype = window.location.search.substring("dietPlace").split("=")[1];
-
-//   const dietData = useSelector((state) =>
-//     state.diets.filter((w) => w.dietPlace === mltype)
-//   ); // Assuming you've named your reducer 'diets'
-
-//   useEffect(() => {
-//     dispatch(getDiets()); // Dispatch the action to fetch diets when the component mounts
-//   }, [dispatch]);
-
-//   return (
-//     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-//       <div className="bg-white w-full max-w-3xl p-8 rounded-xl shadow-xl">
-//         <div className="text-2xl font-bold mb-6">Your Home Diets</div>
-//         {dietData?.map((diet, index) => (
-//           <DietCard key={index} diet={diet} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default DietList;
-
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const DietCard = ({ diet }) => {
   return (
@@ -111,7 +44,7 @@ const DietCard = ({ diet }) => {
   );
 };
 
-const DietList = () => {
+const DietListVeg = () => {
   const dietData = [
     {
       _id: "64ea0951d1af442652d6eb4d",
@@ -853,4 +786,4 @@ const DietList = () => {
   );
 };
 
-export default DietList;
+export default DietListVeg;
