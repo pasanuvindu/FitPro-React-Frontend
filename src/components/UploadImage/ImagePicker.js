@@ -8,16 +8,23 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 
 function ImagePicker() {
   const [image, setImage] = useState(null);
   const [fileName, setFileName] = useState("No selected file");
   const styles = {
     card: {
-      width: "1100px", 
-      height: "640px", 
+      width: "1100px",
+      height: "640px",
       backgroundColor: "ash",
     },
+  };
+
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    navigate("/progressStat");
   };
 
   return (
@@ -34,7 +41,7 @@ function ImagePicker() {
               Upload User Body Image
             </Typography>
             <Typography
-              sx={{ fontSize: 14 , marginTop: 3}}
+              sx={{ fontSize: 14, marginTop: 3 }}
               color="text.secondary"
               gutterBottom
             >
@@ -82,9 +89,20 @@ function ImagePicker() {
                 />
               </span>
             </section>
+            <div className="text-center mt-6">
+        <button
+          onClick={handleSubmit}
+          className="px-4 py-2 text-white bg-gradient-to-r from-pink-500 to-pink-300 hover:from-pink-600 hover:to-pink-400 rounded-lg font-semibold"
+        >
+          Upload
+        </button>
+      </div>
           </main>
         </Card>
+
       </Box>
+
+
     </div>
   );
 }

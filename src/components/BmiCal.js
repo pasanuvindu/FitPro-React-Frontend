@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { calculateBMI } from "../actions/bmi";
+import { useNavigate } from "react-router-dom";
 import backgroundImage from "../components/assets/anastase-maragos-FP7cfYPPUKM-unsplash.jpg";
 
 const BmiCal = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [gender, setGender] = useState("");
   const [dob, setDOB] = useState("");
@@ -50,7 +52,11 @@ const BmiCal = () => {
     setWeight("");
     setBMI(null);
     setCategory("");
+
+    navigate("/uploadImg");
   };
+
+  
 
   return (
     <div className="container mx-auto p-4">
