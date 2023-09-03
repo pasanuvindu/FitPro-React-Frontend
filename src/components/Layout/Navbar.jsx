@@ -37,7 +37,7 @@ const Navbar = () => {
             <a href="/home">Home</a>
           </li>
           <li className="nav-item hover:text-[#FF6B6B]">
-            <a href="/company">Company</a>
+            <a href="/workoutTracker">WorkoutTracker</a>
           </li>
           <li className="nav-item hover:text-[#FF6B6B]">
             <a href="/about">About</a>
