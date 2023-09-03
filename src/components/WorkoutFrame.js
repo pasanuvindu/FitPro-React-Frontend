@@ -1,4 +1,4 @@
-import React, { useState , useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
@@ -8,14 +8,14 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { TransitionProps } from '@mui/material/transitions';
-import Slide from '@mui/material/Slide';
+import { TransitionProps } from "@mui/material/transitions";
+import Slide from "@mui/material/Slide";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
-    children: React.ReactElement<any, any>;
+    children: React.ReactElement<any, any>,
   },
-  ref: React.Ref<unknown>,
+  ref: React.Ref<unknown>
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -23,7 +23,9 @@ const Transition = React.forwardRef(function Transition(
 const WorkoutFrame = () => {
   const { workoutId } = useParams();
   const workoutData = useSelector((state) => state.workouts);
-  const selectedWorkout = workoutData.find((workout) => workout._id === workoutId);
+  const selectedWorkout = workoutData.find(
+    (workout) => workout._id === workoutId
+  );
 
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -35,13 +37,13 @@ const WorkoutFrame = () => {
   useEffect(() => {
     const generateRandomData = () => {
       const daysOfWeek = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
+        "Jumping Jacks : Stand upright with your feet together and your arms at your sides.Jump while spreading your feet to shoulder-width apart and raising your arms above your head.Quickly reverse the movement, returning to the starting position.",
+        "Sit Ups: Stand upright with your feet together and your arms at your sides.Jump while spreading your feet to shoulder-width apart and raising your arms above your head.Quickly reverse the movement, returning to the starting position.",
+        "Lunges: Stand upright with your feet together and your arms at your sides.Jump while spreading your feet to shoulder-width apart and raising your arms above your head.Quickly reverse the movement, returning to the starting position.",
+        "Burpees: Stand upright with your feet together and your arms at your sides.Jump while spreading your feet to shoulder-width apart and raising your arms above your head.Quickly reverse the movement, returning to the starting position.",
+        "Test 1: Stand upright with your feet together and your arms at your sides.Jump while spreading your feet to shoulder-width apart and raising your arms above your head.Quickly reverse the movement, returning to the starting position.",
+        "Test 2:  Stand upright with your feet together and your arms at your sides.Jump while spreading your feet to shoulder-width apart and raising your arms above your head.Quickly reverse the movement, returning to the starting position.",
+        "Test 3 : Stand upright with your feet together and your arms at your sides.Jump while spreading your feet to shoulder-width apart and raising your arms above your head.Quickly reverse the movement, returning to the starting position.",
       ];
       const newData = [];
 
@@ -62,8 +64,6 @@ const WorkoutFrame = () => {
     const randomIndex = Math.floor(Math.random() * randomDataArray.length);
     setSelectedRandomItem(randomDataArray[randomIndex]);
   }, []);
-
-
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -103,9 +103,6 @@ const WorkoutFrame = () => {
     // You can perform further actions with the inputValue
   };
 
-
-
-
   return (
     <div className="frame h-[568px] relative w-[1087px] flex">
       <div className="overlap-group bg-white rounded-[22px] shadow-[0px 4px 11px #00000040] h-[509px] absolute top-[59px] left-0 w-full flex">
@@ -134,11 +131,15 @@ const WorkoutFrame = () => {
           </div>
           <div className="button-wrapper flex justify-between mt-6">
             <div>
-              <Button variant="outlined" onClick={handleClickOpen}>
-                Open form dialog
+              <Button
+                className="px-4 py-2 text-white bg-gradient-to-r from-pink-500 to-pink-300 hover:from-pink-600 hover:to-pink-400 rounded-lg font-semibold"
+                variant="outlined"
+                onClick={handleClickOpen}
+              >
+                Skip
               </Button>
               <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Subscribe</DialogTitle>
+                <DialogTitle>Why are you skip this...</DialogTitle>
                 <DialogContent>
                   <DialogContentText>
                     To subscribe to this website, please enter your email
@@ -156,7 +157,7 @@ const WorkoutFrame = () => {
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={handleClose}>Cancel</Button>
-                  <Button onClick={handleOpening}>Subscribe</Button>
+                  <Button onClick={handleOpening}>Done</Button>
                 </DialogActions>
               </Dialog>
               <Dialog
@@ -169,7 +170,7 @@ const WorkoutFrame = () => {
                 <DialogTitle>{"Use Google's location service?"}</DialogTitle>
                 <DialogContent>
                   <DialogContentText id="alert-dialog-slide-description">
-                  {selectedRandomItem && (
+                    {selectedRandomItem && (
                       <div>
                         {selectedRandomItem.day}: {selectedRandomItem.value}
                       </div>
