@@ -43,7 +43,7 @@ const BmiCal = () => {
   };
 
   const handleSubmit = () => {
-    // Dispatch Redux action to save data to the backend
+    // Dispatch Redux action to save data to backend
     dispatch(
       calculateBMI({
         gender,
@@ -64,28 +64,6 @@ const BmiCal = () => {
     setCategory("");
 
     navigate("/uploadImg");
-  };
-
-  const renderResults = () => {
-    if (bmi !== null) {
-      return (
-        <div className="bg-white rounded-lg p-4">
-          <div className="text-center">
-            <label className="text-gray-700 text-sm font-medium block mb-2">
-              BMI
-            </label>
-            <span className="p-2 bg-gray-200 rounded">{bmi}</span>
-          </div>
-          <div className="text-center mt-2">
-            <label className="text-gray-700 text-sm font-medium block mb-2">
-              Category
-            </label>
-            <span className="p-2 bg-gray-200 rounded">{category}</span>
-          </div>
-        </div>
-      );
-    }
-    return null;
   };
 
   return (
@@ -159,20 +137,36 @@ const BmiCal = () => {
         </div>
       </div>
       <div className="text-center mt-6">
-        <div className="flex flex-row justify-center">
-          <button
-            onClick={handleCalculate}
-            className="px-4 py-2 text-white bg-gradient-to-r from-orange-500 to-orange-300 hover:from-orange-600 hover:to-orange-400 rounded-lg font-semibold mr-2"
-          >
-            Calculate BMI
-          </button>
-          <button
-            onClick={handleSubmit}
-            className="px-4 py-2 text-white bg-gradient-to-r from-pink-500 to-pink-300 hover:from-pink-600 hover:to-pink-400 rounded-lg font-semibold"
-          >
-            Save Data
-          </button>
+        <button
+          onClick={handleCalculate}
+          className="px-4 py-2 text-white bg-gradient-to-r from-orange-500 to-orange-300 hover:from-orange-600 hover:to-orange-400 rounded-lg font-semibold"
+        >
+          Calculate BMI
+        </button>
+      </div>
+      {bmi !== null && (
+        <div className="mt-6">
+          <div className="text-center">
+            <label className="text-gray-700 text-sm font-medium block mb-2">
+              BMI
+            </label>
+            <span className="p-2 bg-gray-200 rounded">{bmi}</span>
+          </div>
+          <div className="text-center mt-2">
+            <label className="text-gray-700 text-sm font-medium block mb-2">
+              Category
+            </label>
+            <span className="p-2 bg-gray-200 rounded">{category}</span>
+          </div>
         </div>
+      )}
+      <div className="text-center mt-6">
+        <button
+          onClick={handleSubmit}
+          className="px-4 py-2 text-white bg-gradient-to-r from-pink-500 to-pink-300 hover:from-pink-600 hover:to-pink-400 rounded-lg font-semibold"
+        >
+          Save Data
+        </button>
       </div>
     </div>
   );
