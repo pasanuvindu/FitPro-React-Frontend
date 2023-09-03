@@ -24,7 +24,7 @@ function ImagePicker() {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    navigate("/progressStat");
+    navigate("/workoutOverview");
   };
 
   return (
@@ -90,19 +90,16 @@ function ImagePicker() {
               </span>
             </section>
             <div className="text-center mt-6">
-        <button
-          onClick={handleSubmit}
-          className="px-4 py-2 text-white bg-gradient-to-r from-pink-500 to-pink-300 hover:from-pink-600 hover:to-pink-400 rounded-lg font-semibold"
-        >
-          Upload
-        </button>
-      </div>
+              <button
+                onClick={handleSubmit}
+                className="px-4 py-2 text-white bg-gradient-to-r from-pink-500 to-pink-300 hover:from-pink-600 hover:to-pink-400 rounded-lg font-semibold"
+              >
+                Upload
+              </button>
+            </div>
           </main>
         </Card>
-
       </Box>
-
-
     </div>
   );
 }

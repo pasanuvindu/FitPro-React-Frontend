@@ -12,7 +12,7 @@ import { Avatar } from "@material-ui/core";
 import { blue, green, pink, yellow } from "@material-ui/core/colors";
 import "./MonthlyWorkout.css";
 import axios from "axios";
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
 const useStyles = makeStyles({
   avatar: {
@@ -37,7 +37,7 @@ function DailyWorkout() {
   const classes = useStyles();
   const [records, setRecords] = useState({});
   const today = new Date();
-  const formattedDate = format(today, 'yyyy-MM-dd'); 
+  const formattedDate = format(today, "yyyy-MM-dd");
 
   useEffect(() => {
     const apiURL = `http://localhost:5000/api/getDailyProgress/${formattedDate}`;
@@ -65,7 +65,7 @@ function DailyWorkout() {
           <div className="monthly-card-container">
             <div className="relative max-w-xs overflow-hidden rounded-2xl shadow-lg group flex-wrap flex justify-center items-center">
               <img
-                src="https://images.unsplash.com/photo-1679679007793-25fa830507c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80"
+                src="https://images.unsplash.com/photo-1613685044678-0a9ae422cf5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1965&q=80"
                 className="transition-transform group-hover:scale-110 duration-200"
               ></img>
               <div className="absolute insert-0 flex items-end bg-gradient-to-t from-black/60 to-transparent"></div>

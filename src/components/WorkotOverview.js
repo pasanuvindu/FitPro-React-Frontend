@@ -1,122 +1,110 @@
-import "./WorkoutOverview.css";
 import React, { useState, useEffect } from "react";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import { makeStyles } from "@material-ui/styles";
-import { blue } from "@material-ui/core/colors";
-import axios from "axios";
-import "../components/WorkoutTracker/DietTracker.css";
-import { format } from "date-fns";
-import ViewQuiltIcon from "@material-ui/icons/ViewQuilt";
+import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
 import Button from "@mui/material/Button";
+import axios from "axios";
 
-function WorkotOverview() {
-  const styles = {
-    records: {
-      width: "500px",
-      height: "640px",
-      borderRadius: "20px",
-      backgroundColor: "#e0e0e0", // Ash color
-    },
-    main: {
-      width: "800px",
-      height: "640px",
-      borderRadius: "20px",
-    },
-    topic: {
-      fontSize: "24px",
-      fontWeight: "bold",
-      color: "black",
-      fontFamily: '"Segoe UI"',
-      marginBottom: "12px",
-      marginTop: "12px",
-    },
-    pageIcon: {
-      padding: 2,
-      color: "red",
-    },
-    box: {
-      width: "300px",
-      height: "180px",
-      borderRadius: "10px",
-      marginRight: "12px", // Add margin to separate the boxes
-      boxShadow: "0 4px 6px rgba(1, 1, 1, 0.4)",
-      marginLeft: "51px",
-      marginTop: "15px",
-    },
-    boxContainer: {
-      display: "flex",
-      gap: "12px",
-      marginTop: "24px", // Add some margin to separate the boxes from the topic
-    },
-    buttonContainer: {
-      display: "flex",
-      gap: "12px", // Add gap between buttons
-      marginTop: "232px", // Move the buttons down
-      marginLeft: "53px",
-    },
-    ashButton: {
-      backgroundColor: "#ff8a65", // Ash color
-      width: "192px",
-      height: "42px",
-    },
-    lightGreenButton: {
-      backgroundColor: "#fb8c00", // Light green color
-      width: "282px",
-      height: "42px",
-    },
-  };
+function WorkoutOverview() {
+  const [waistToHipRatio, setWaistToHipRatio] = useState("");
+  const [riskLevel, setRiskLevel] = useState("");
+  const [bodyMeasurementImage, setBodyMeasurementImage] = useState("");
+  const [records, setRecords] = useState([]);
+
+  useEffect(() => {
+    // Simulate fetching dynamic data from an API or source
+    // Replace this with your actual data fetching logic
+    const imgsrc = "dasun.jpg";
+
+    const fetchData = async () => {
+      try {
+        // Fetch waist to hip ratio and risk level
+        const response = await fetch(
+          `http://localhost:5000/api/getDimensions/${imgsrc}`
+        );
+        const data = await response.json();
+
+        // Update state with fetched data
+        setWaistToHipRatio(data.hipWasiRatio);
+        setRiskLevel(data.riskLevel);
+
+        // Fetch body measurement image
+        const imageResponse = await fetch("image_api_endpoint_here");
+        const imageBlob = await imageResponse.blob();
+        const imageUrl = URL.createObjectURL(imageBlob);
+        setBodyMeasurementImage(imageUrl);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+
+    const apiURL = `http://localhost:5000/api/getDimensions/${imgsrc}`;
+    axios
+      .get(apiURL)
+      .then((response) => {
+        if (response.data) {
+          console.log("data", response.data);
+          setRecords(response.data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   return (
     <div>
-      <br /> <br /> <br /> <br />
-      <div style={{ display: "flex", marginLeft: "142px", gap: "12px" }}>
-        <Card sx={styles.main}>
-          <Typography sx={styles.topic}>
-            {" "}
+      <div className="bg-gray-100 py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <br />
+          <h1 className="text-3xl md:text-4xl font-semibold text-gray-800">
             <ViewQuiltIcon fontSize="large" style={{ color: "orange" }} />{" "}
             Health Overview
-          </Typography>
-          <div style={styles.boxContainer}>
-            <Box sx={styles.box}>
-              <Typography
-                variant="body1"
-                color="textSecondary"
-                style={{ fontWeight: "bold", marginTop: "12px" }}
-              >
-                Waist to Hip Ratio
-              </Typography>
-            </Box>
-            <Box sx={styles.box}>
-              <Typography
-                variant="body1"
-                color="textSecondary"
-                style={{ fontWeight: "bold", marginTop: "12px" }}
-              >
-                Risk Level
-              </Typography>
-            </Box>
+          </h1>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-md shadow-md p-4">
+              <p className="text-xl font-semibold mb-4">Waist to Hip Ratio:</p>
+              <span className="text-2xl">{waistToHipRatio}</span>
+            </div>
+            <div className="bg-white rounded-md shadow-md p-4">
+              <p className="text-xl font-semibold mb-4">Risk Level:</p>
+              <span className="text-2xl">{riskLevel}</span>
+            </div>
           </div>
-          <div style={styles.buttonContainer}>
-            <Button variant="contained" style={styles.ashButton}>
+          <div className="mt-8 space-y-4 md:space-y-0 md:flex md:justify-between">
+            <Button
+              variant="contained"
+              href="/workout"
+              className="px-6 py-3 text-white bg-gradient-to-r from-pink-600 to-pink-400 hover:from-pink-500 hover:to-pink-300 rounded-lg font-semibold"
+            >
               Workout Plan
             </Button>
-            <Button variant="contained" style={styles.ashButton}>
+            <Button
+              variant="contained"
+              href="/diet"
+              className="px-6 py-3 text-white bg-gradient-to-r from-orange-600 to-orange-400 hover:from-orange-500 hover:to-orange-300 rounded-lg font-semibold"
+            >
               Diet Plan
             </Button>
-            <Button variant="contained" style={styles.lightGreenButton}>
-              Workout Plan + Diet Plan
-            </Button>
           </div>
-        </Card>
-        <Card sx={styles.records}>
-          <Typography sx={styles.topic}>Body Measurements</Typography>
-        </Card>
+        </div>
+      </div>
+      <div className="bg-gray-200 py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-semibold text-gray-800">
+            Body Measurements
+          </h1>
+          <div className="mt-8">
+            <img
+              src={bodyMeasurementImage}
+              alt="Body Measurements"
+              className="w-full h-auto"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-export default WorkotOverview;
+export default WorkoutOverview;
