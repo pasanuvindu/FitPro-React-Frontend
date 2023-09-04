@@ -11,7 +11,8 @@ const DietCard = (props) => {
     <div className="bg-white rounded-lg overflow-hidden shadow-md flex">
       <img
         className="w-24 h-24 object-cover"
-        src={diet.image}
+        //src={diet.image}
+        src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80"
         alt={diet.dietType}
       />
       <div className="p-4 flex flex-col">
@@ -28,7 +29,7 @@ const DietCard = (props) => {
           VIEW
         </button>
 
-        <div className="mt-4">
+        {/* <div className="mt-4">
           <div className="font-semibold">Breakfast:</div>
           <ul>
             {diet.breakfast.map((item, index) => (
@@ -51,7 +52,7 @@ const DietCard = (props) => {
               <li key={index}>{item}</li>
             ))}
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -63,7 +64,7 @@ const DietListNonVeg = () => {
   useEffect(() => {
     const dietType = "LowCarbs";
     const date = "Monday";
-    const isVeg = "Yes";
+    const isVeg = "No";
 
     const currentDate = new Date();
     const daysOfWeek = [
