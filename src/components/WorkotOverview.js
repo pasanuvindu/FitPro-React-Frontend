@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import { useLocation } from 'react-router-dom';
+
 
 function WorkoutOverview() {
   const [waistToHipRatio, setWaistToHipRatio] = useState("");
@@ -9,10 +11,13 @@ function WorkoutOverview() {
   const [bodyMeasurementImage, setBodyMeasurementImage] = useState("");
   const [records, setRecords] = useState([]);
 
+  const location = useLocation();
+  const fileName = new URLSearchParams(location.search).get('fileName')
+
   useEffect(() => {
     // Simulate fetching dynamic data from an API or source
     // Replace this with your actual data fetching logic
-    const imgsrc = "dasun.jpg";
+    const imgsrc = fileName;
 
     const fetchData = async () => {
       try {
@@ -24,6 +29,7 @@ function WorkoutOverview() {
 
         // Update state with fetched data
         setWaistToHipRatio(data.hipWasiRatio);
+        console.log(data.hipWasiRatio)
         setRiskLevel(data.riskLevel);
 
         // Fetch body measurement image

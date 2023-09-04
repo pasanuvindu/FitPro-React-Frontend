@@ -8,11 +8,11 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 
 function ImagePicker() {
   const [image, setImage] = useState(null);
-  const [fileName, setFileName] = useState("No selected file");
+  const [fileName , setFileName] = useState("No selected file");
   const styles = {
     card: {
       width: "1100px",
@@ -21,11 +21,14 @@ function ImagePicker() {
     },
   };
 
+  
+
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    navigate("/workoutOverview");
+    navigate(`/workoutOverview?fileName=${fileName}`);
   };
+
 
   return (
     <div>
