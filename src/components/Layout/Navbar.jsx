@@ -40,7 +40,7 @@ const Navbar = () => {
             <a href="/workoutTracker">WorkoutTracker</a>
           </li>
           <li className="nav-item hover:text-[#FF6B6B]">
-            <a href="/about">About</a>
+            <a href="/dietTracker">DietTracker</a>
           </li>
           <li className="nav-item hover:text-[#FF6B6B]">
             <a href="/contact">Contact</a>
@@ -50,10 +50,18 @@ const Navbar = () => {
       {navOpen && (
         <div className="bg-black md:hidden">
           <ul className="py-4 text-center">
-            <li className="py-2 border-b border-gray-600">Home</li>
-            <li className="py-2 border-b border-gray-600">Company</li>
-            <li className="py-2 border-b border-gray-600">About</li>
-            <li className="py-2">Contact</li>
+            <li className="py-2 border-b border-gray-600">
+              <a href="/home">Home</a>
+            </li>
+            <li className="py-2 border-b border-gray-600">
+              <a href="/workoutTracker">WorkoutTracker</a>
+            </li>
+            <li className="py-2 border-b border-gray-600">
+              <a href="/dietTracker">DietTracker</a>
+            </li>
+            <li className="py-2">
+              <a href="/contact">Contact</a>
+            </li>
           </ul>
         </div>
       )}
