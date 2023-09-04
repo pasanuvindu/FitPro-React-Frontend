@@ -26,13 +26,13 @@ const Diet = () => {
         </div>
         <div className="flex items-center justify-center space-x-4">
           <a
-            href="/dietlistveg?isVegan=true"
+            href="/dietlistveg?isVeg=Yes"
             className="px-6 py-3 text-white bg-gradient-to-r from-green-400 to-green-600 hover:from-green-300 hover:to-green-500 rounded-lg font-semibold"
           >
             Vegetarian
           </a>
           <a
-            href="/dietlistnonveg?isVegan=false"
+            href="/dietlistnonveg?isVeg=No"
             className="px-6 py-3 text-white bg-gradient-to-r from-red-400 to-red-600 hover:from-red-300 hover:to-red-500 rounded-lg font-semibold"
           >
             Non-Vegetarian

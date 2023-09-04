@@ -25,7 +25,7 @@ const DietCard = (props) => {
           className="mt-4 px-4 py-2 w-32 bg-gradient-to-r from-pink-500 to-orange-400 text-white font-medium rounded-full shadow-md flex-shrink-0"
           onClick={() => navigate(`/workoutframe/${diet.dayofWeek}`)}
         >
-          START
+          VIEW
         </button>
 
         <div className="mt-4">
