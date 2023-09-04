@@ -20,6 +20,7 @@ import DietListVeg from "./components/DietListVeg";
 import DietListNonVeg from "./components/DietListNonVeg";
 import ProgressStat from "./components/WorkoutTracker/ProgressStat";
 import WorkoutOverview from "./components/WorkotOverview";
+import DietFrame from "./components/DietFrame";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
 
             <Route path="/workoutframe/:workoutId" element={<WorkoutFrame />} />
             <Route path="/uploadImg" element={<ImagePicker />} />
+            <Route path="/dietframe" element={<DietFrame />} />
             <Route path="/workoutTypes" element={<WorkoutMain />} />
             <Route path="/dietTracker" element={<DietTracker />} />
             <Route path="/workoutTracker" element={<WorkoutTracker />} />

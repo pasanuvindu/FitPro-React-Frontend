@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -10,6 +10,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { TransitionProps } from "@mui/material/transitions";
 import Slide from "@mui/material/Slide";
+import yourImage from "./assets/fitness-gym-logo.png";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -33,6 +34,12 @@ const WorkoutFrame = () => {
   const [openRecommend, setOpenRecommend] = React.useState(false);
   const [randomData, setRandomData] = useState([]);
   const [selectedRandomItem, setSelectedRandomItem] = useState(null);
+
+  // New state for button and countdown
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
+  const [countdown, setCountdown] = useState(20); // Initial countdown value
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const generateRandomData = () => {
@@ -63,6 +70,34 @@ const WorkoutFrame = () => {
     // Select a single random item from the generated data
     const randomIndex = Math.floor(Math.random() * randomDataArray.length);
     setSelectedRandomItem(randomDataArray[randomIndex]);
+  }, []);
+
+  useEffect(() => {
+    // Function to start the countdown
+    const startCountdown = () => {
+      setButtonDisabled(true);
+      let countdownInterval = setInterval(() => {
+        setCountdown((prevCountdown) => prevCountdown - 1);
+      }, 1000);
+
+      setTimeout(() => {
+        clearInterval(countdownInterval);
+        setButtonDisabled(false);
+        setCountdown(20); // Reset the countdown
+
+        // Redirect to the desired URL after 20 seconds
+        navigate(-1);
+      }, 20000); // 20 seconds
+    };
+
+    const buttonElement = document.querySelector(".complete-button");
+
+    if (buttonElement) {
+      buttonElement.addEventListener("click", startCountdown);
+      return () => {
+        buttonElement.removeEventListener("click", startCountdown);
+      };
+    }
   }, []);
 
   const handleClickOpen = () => {
@@ -139,25 +174,30 @@ const WorkoutFrame = () => {
                 Skip
               </Button>
               <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Why are you skip this...</DialogTitle>
+                <DialogTitle>Hey there!</DialogTitle>
                 <DialogContent>
                   <DialogContentText>
-                    To subscribe to this website, please enter your email
-                    address here. We will send updates occasionally.
+                    We noticed you skipped your workout today. Please select the
+                    reason from the options below:
                   </DialogContentText>
-                  <TextField
+                  <Select
                     autoFocus
                     margin="dense"
-                    id="name"
-                    label="Email Address"
-                    type="email"
+                    id="reason"
+                    label="Reason"
                     fullWidth
                     variant="standard"
-                  />
+                    native // This makes it a native select element
+                  >
+                    <option value="">Select a reason</option>
+                    <option value="tooTired">Workout was too intense</option>
+                    <option value="busySchedule">Lack of motivation</option>
+                    <option value="notFeelingWell">Injury or soreness</option>
+                  </Select>
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={handleClose}>Cancel</Button>
-                  <Button onClick={handleOpening}>Done</Button>
+                  <Button onClick={handleOpening}>Next</Button>
                 </DialogActions>
               </Dialog>
               <Dialog
@@ -167,7 +207,7 @@ const WorkoutFrame = () => {
                 onClose={handleRecommendClose}
                 aria-describedby="alert-dialog-slide-description"
               >
-                <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+                <DialogTitle>{"We have made it easier for you"}</DialogTitle>
                 <DialogContent>
                   <DialogContentText id="alert-dialog-slide-description">
                     {selectedRandomItem && (
@@ -175,15 +215,29 @@ const WorkoutFrame = () => {
                         {selectedRandomItem.day}: {selectedRandomItem.value}
                       </div>
                     )}
+                    <img src={yourImage} alt="Description of your image" />
                   </DialogContentText>
                 </DialogContent>
+
                 <DialogActions>
-                  <Button onClick={handleRecommendClose}>Agree</Button>
+                  <Button
+                    onClick={() => {
+                      handleRecommendClose();
+                      navigate(-1); // Navigate to the desired URL
+                    }}
+                  >
+                    Let's move on
+                  </Button>
                 </DialogActions>
               </Dialog>
             </div>
-            <button className="mt-4 px-4 py-2 w-32 bg-gradient-to-r from-pink-500 to-orange-400 text-white font-medium rounded-full shadow-md">
-              COMPLETE
+            <button
+              className={`mt-4 px-4 py-2 w-32 bg-gradient-to-r from-pink-500 to-orange-400 text-white font-medium rounded-full shadow-md complete-button`}
+              disabled={isButtonDisabled}
+            >
+              {isButtonDisabled
+                ? `Take a rest ${countdown} seconds`
+                : "COMPLETE"}
             </button>
           </div>
         </div>
