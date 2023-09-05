@@ -96,7 +96,7 @@ const ProgressStat = () => {
       });
 
       
-  }, [chartData, formData, predictionResult,]);
+  }, []);
 
   
 
