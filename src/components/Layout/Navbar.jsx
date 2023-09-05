@@ -43,7 +43,7 @@ const Navbar = () => {
             <a href="/dietTracker">DietTracker</a>
           </li>
           <li className="nav-item hover:text-[#FF6B6B]">
-            <a href="/contact">Contact</a>
+            <a href="/diet">Diet</a>
           </li>
         </ul>
       </div>
@@ -60,7 +60,7 @@ const Navbar = () => {
               <a href="/dietTracker">DietTracker</a>
             </li>
             <li className="py-2">
-              <a href="/contact">Contact</a>
+              <a href="/diet">Diet</a>
             </li>
           </ul>
         </div>

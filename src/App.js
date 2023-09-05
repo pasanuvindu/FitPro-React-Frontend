@@ -39,8 +39,8 @@ function App() {
             <Route path="/workoutlist" element={<WorkoutList />} />
 
             <Route path="/workoutframe/:workoutId" element={<WorkoutFrame />} />
+            <Route path="/dietframe/:dietId" element={<DietFrame />} />
             <Route path="/uploadImg" element={<ImagePicker />} />
-            <Route path="/dietframe" element={<DietFrame />} />
             <Route path="/workoutTypes" element={<WorkoutMain />} />
             <Route path="/dietTracker" element={<DietTracker />} />
             <Route path="/workoutTracker" element={<WorkoutTracker />} />
