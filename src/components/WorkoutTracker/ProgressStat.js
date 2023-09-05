@@ -29,6 +29,16 @@ const ProgressStat = () => {
     ],
   });
 
+  const [predictionResult, setPredictionResult] = useState(null); // State to hold the prediction result
+  const [formData, setFormData] = useState({
+    Height: 170,
+    Weight: 35,
+    Age: 30,
+    Sex: "F",
+    Activity_Level: "High",
+    Maintenance_Calories: 1000,
+  });
+
   const theme = useTheme();
 
   useEffect(() => {
@@ -73,7 +83,22 @@ const ProgressStat = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+
+      axios
+      .post("http://localhost:8000/tracker/predict/tracker", formData)
+      .then((response) => {
+        console.log(response.data)
+        setPredictionResult(response.data); // Assuming the response contains the prediction result
+       
+      })
+      .catch((error) => {
+        console.error("Error fetching prediction:", error);
+      });
+
+      
+  }, [chartData, formData, predictionResult,]);
+
+  
 
 
   const options = {
@@ -175,8 +200,7 @@ const ProgressStat = () => {
         
         <br></br>
       <Typography variant="h6">
-        Gain Your Weight
-        
+      <pre>{JSON.stringify(predictionResult, null, 2)}</pre>
       </Typography>
     </CardContent>
    
