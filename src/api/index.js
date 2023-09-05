@@ -23,7 +23,7 @@ export const deletePost = (id) => API.delete(`/posts/${id}`);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 
 // Workout APIs
-export const fetchWorkouts = () => API.get("/workouts");
+export const fetchWorkouts = () => API.get("/workouts?workoutType=Cardio");
 
 // Diet APIs
 export const fetchDiets = () => API.get("/diets");
