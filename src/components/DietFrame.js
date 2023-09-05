@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import axios from "axios"; 
 
 const DietFrame = () => {
   const location = useLocation();
