@@ -52,7 +52,7 @@ const DietListVeg = () => {
   useEffect(() => {
     const dietType = "LowCarbs";
     const date = "Monday";
-    const isVeg = "No";
+    const isVeg = "Yes";
 
     const currentDate = new Date();
     const daysOfWeek = [

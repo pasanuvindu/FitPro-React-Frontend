@@ -1,4 +1,4 @@
-import { Box, Container, styled, Typography } from "@mui/material";
+import { Box, Container, Card ,CardContent ,styled, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
@@ -116,6 +116,15 @@ const ProgressStat = () => {
     },
   }));
 
+  const bull = (
+    <Box
+      component="span"
+      sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+    >
+      •
+    </Box>
+  );
+
   return (
     <Container>
       <br />
@@ -152,6 +161,28 @@ const ProgressStat = () => {
         <br></br>
         <br></br>
       </Paper>
+
+      <br />
+        <br></br>
+        <br></br>
+      <React.Fragment>
+    <CardContent>
+      
+      <Typography variant="h4" component="div">
+        You are on the way to.
+      </Typography>
+      
+        
+        <br></br>
+      <Typography variant="h6">
+        Gain Your Weight
+        
+      </Typography>
+    </CardContent>
+   
+  </React.Fragment>
+
+      
     </Container>
   );
 };
