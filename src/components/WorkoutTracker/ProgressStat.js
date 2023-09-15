@@ -1,4 +1,4 @@
-import { Box, Container, styled, Typography } from "@mui/material";
+import { Box, Container, Card ,CardContent ,styled, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
@@ -27,6 +27,16 @@ const ProgressStat = () => {
         tension: 0.5,
       },
     ],
+  });
+
+  const [predictionResult, setPredictionResult] = useState(null); // State to hold the prediction result
+  const [formData, setFormData] = useState({
+    Height: 170,
+    Weight: 35,
+    Age: 30,
+    Sex: "F",
+    Activity_Level: "High",
+    Maintenance_Calories: 1000,
   });
 
   const theme = useTheme();
@@ -73,7 +83,22 @@ const ProgressStat = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+
+      axios
+      .post("http://localhost:8000/tracker/predict/tracker", formData)
+      .then((response) => {
+        console.log(response.data)
+        setPredictionResult(response.data); // Assuming the response contains the prediction result
+       
+      })
+      .catch((error) => {
+        console.error("Error fetching prediction:", error);
+      });
+
+      
   }, []);
+
+  
 
 
   const options = {
@@ -116,6 +141,15 @@ const ProgressStat = () => {
     },
   }));
 
+  const bull = (
+    <Box
+      component="span"
+      sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+    >
+      •
+    </Box>
+  );
+
   return (
     <Container>
       <br />
@@ -152,6 +186,27 @@ const ProgressStat = () => {
         <br></br>
         <br></br>
       </Paper>
+
+      <br />
+        <br></br>
+        <br></br>
+      <React.Fragment>
+    <CardContent>
+      
+      <Typography variant="h4" component="div">
+        You are on the way to.
+      </Typography>
+      
+        
+        <br></br>
+      <Typography variant="h6">
+      <pre>{JSON.stringify(predictionResult, null, 2)}</pre>
+      </Typography>
+    </CardContent>
+   
+  </React.Fragment>
+
+      
     </Container>
   );
 };
