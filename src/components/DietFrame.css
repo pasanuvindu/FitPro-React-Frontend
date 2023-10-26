@@ -1,0 +1,72 @@
+.Frame {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.header {
+  color: #000;
+  font-weight: bold;
+  font-size: 50px;
+
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding: 10px 5%;
+}
+
+.card {
+  background: rgba(249, 249, 249, 0.4);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 25%;
+  min-height: 400px;
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px; /* Adjust this value to control the gap between cards */
+  transition: transform 0.2s;
+}
+
+
+.card h2 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  margin-top: 10px;
+  color: #000;
+  text-align: center;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.scrollable-list {
+  list-style: none;
+  padding: 0;
+  overflow: auto;
+}
+
+.card li {
+  font-size: 25px;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.card:hover {
+  transform: scale(1.25);
+}

@@ -12,7 +12,7 @@ const DietCard = (props) => {
       <img
         className="w-24 h-24 object-cover"
         //src={diet.image}
-        src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80"
+        src={diet.image}
         alt={diet.dietType}
       />
       <div className="p-4 flex flex-col">
@@ -65,7 +65,6 @@ const DietListNonVeg = () => {
   const [day, setDay] = useState(null);
   useEffect(() => {
     const dietType = "LowCarbs";
-    const date = "Monday";
     const isVeg = "No";
 
     const currentDate = new Date();
