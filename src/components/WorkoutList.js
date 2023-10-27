@@ -1,18 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getWorkouts } from "../actions/workout"; // Adjust the path as needed
 import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
-
+import axios from "axios";
 const WorkoutCard = ({ workout }) => {
   const navigate = useNavigate(); // Initialize the useNavigate hook
-
-  // console.log(workout);
-
-  // var qs = parse_query_string(query);
-  // alert(qs);
-
-  // Gym
-  // const curWorkOuts =
 
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md flex">
@@ -46,16 +38,40 @@ const WorkoutCard = ({ workout }) => {
 };
 
 const WorkoutList = () => {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const wotype = window.location.search.substring("workoutPlace").split("=")[1];
+  const [records, setRecords] = useState({});
 
-  const workoutData = useSelector((state) =>
-    state.workouts.filter((w) => w.workoutPlace === wotype)
-  ); // Assuming you've named your reducer 'workouts'
+  const [workoutData, setWorkoutData] = useState([]); // Assuming you've named your reducer 'workouts'
 
   useEffect(() => {
-    dispatch(getWorkouts()); // Dispatch the action to fetch workouts when the component mounts
-  }, [dispatch]);
+    const savedHeight = localStorage.getItem("height");
+    const savedWeight = localStorage.getItem("weight");
+
+    const Data = {
+      age: savedHeight,
+      weight_kg: savedWeight,
+      exercise_hours_per_week: 5,
+      calories_consumed_per_day: 2200,
+    };
+
+    const apiURL = "http://localhost:8000/workout/predict/workout";
+
+    axios.post(apiURL, Data).then((response) => {
+      if (response.data) {
+        setRecords(response.data);
+        const baseURL = `http://localhost:5000/api/workouts?workoutType=${response.data.workout_recommendation}`;
+        console.log("baseURL:", response.data);
+
+        axios.get(baseURL).then((secondResponse) => {
+          if (secondResponse.data) {
+            console.log("second call", secondResponse.data);
+            setWorkoutData(secondResponse.data);
+          }
+        });
+      }
+    });
+  }, []);
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">

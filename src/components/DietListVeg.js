@@ -63,6 +63,46 @@ const DietCard = (props) => {
 const DietListVeg = () => {
   const [records, setRecords] = useState([]);
   const [day, setDay] = useState(null);
+  const [dietType, setDietType] = useState();
+  useEffect(() => {
+    const isVeg = "No";
+
+    const BaseURL = `http://localhost:8000/meal/predict/meal`;
+
+    const savedAge = localStorage.getItem("age");
+    const savedGender = localStorage.getItem("gender");
+
+    const age = savedAge ? parseInt(savedAge) : 30;
+
+    const gender = savedGender
+      ? savedGender.charAt(0).toUpperCase().toString()
+      : "M";
+
+    console.log("gender", gender);
+    console.log("age", age);
+
+    const Data = {
+      Age: age,
+      Gender: gender,
+      Activity: "Low",
+      CaloriesIntake: 1500,
+    };
+
+    axios.post(BaseURL, Data).then((secondResponse) => {
+      if (secondResponse.data) {
+        setDietType(secondResponse.data.Predicted_Meal_Type);
+        console.log("secondResponse.data", secondResponse.data);
+      }
+    });
+
+    if (dietType === "Low Carb") {
+      console.log("ddd", dietType);
+      const diet = "LowCarbs";
+      setDietType(diet);
+      console.log("ddd", dietType);
+    }
+  }, []);
+
   useEffect(() => {
     const dietType = "LowCarbs";
     const date = "Monday";
