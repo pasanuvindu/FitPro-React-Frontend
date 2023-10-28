@@ -11,22 +11,52 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { TransitionProps } from "@mui/material/transitions";
 import Slide from "@mui/material/Slide";
 import yourImage from "./assets/fitness-gym-logo.png";
-
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>,
-  },
-  ref: React.Ref<unknown>
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import axios from "axios";
 
 const WorkoutFrame = () => {
   const { workoutId } = useParams();
-  const workoutData = useSelector((state) => state.workouts);
-  const selectedWorkout = workoutData.find(
-    (workout) => workout._id === workoutId
-  );
+  const [workoutData, setWorkoutData] = useState([]);
+  const [records, setRecords] = useState({});
+  useEffect(() => {
+    const savedHeight =
+      localStorage.getItem("height") === null
+        ? 143
+        : localStorage.getItem("height");
+    const savedWeight =
+      localStorage.getItem("weight") === null
+        ? 60
+        : localStorage.getItem("weight");
+
+    const Data = {
+      age: savedHeight,
+      weight_kg: savedWeight,
+      exercise_hours_per_week: 5,
+      calories_consumed_per_day: 2200,
+    };
+
+    const apiURL = "http://localhost:8000/workout/predict/workout";
+
+    axios.post(apiURL, Data).then((response) => {
+      if (response.data) {
+        setRecords(response.data);
+        const baseURL = `http://localhost:5000/api/workouts?workoutType=${response.data.workout_recommendation}`;
+        console.log("baseURL:", response.data);
+
+        axios.get(baseURL).then((secondResponse) => {
+          if (secondResponse.data) {
+            console.log("second call", secondResponse.data);
+            setWorkoutData(secondResponse.data);
+          }
+        });
+      }
+    });
+  }, []);
+
+  // const workoutData = useSelector((state) => state.workouts);
+  const selectedWorkout = workoutData.find((workout) => {
+    console.log("id", workout._Id);
+    return workout._id === workoutId;
+  });
 
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -42,6 +72,8 @@ const WorkoutFrame = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("workoutData workout:", workoutData);
+    console.log("selected workout:");
     const generateRandomData = () => {
       const daysOfWeek = [
         "Jumping Jacks : Stand upright with your feet together and your arms at your sides.Jump while spreading your feet to shoulder-width apart and raising your arms above your head.Quickly reverse the movement, returning to the starting position.",
@@ -140,7 +172,10 @@ const WorkoutFrame = () => {
 
   return (
     <div className="frame h-[568px] relative w-[1087px] flex">
-      <div className="overlap-group bg-white rounded-[22px] shadow-[0px 4px 11px #00000040] h-[509px] absolute top-[59px] left-0 w-full flex">
+      <div
+        className="overlap-group bg-white rounded-[22px] mt-20 shadow-[0px 4px 11px #00000040] h-[509px] absolute top-[59px] left-0 w-full flex"
+        style={{ marginLeft: "332px" }}
+      >
         <div className="left-part w-1/2">
           <img
             className="rectangle h-[405px] object-cover absolute top-[57px] left-[43px] w-[370px]"
@@ -202,7 +237,6 @@ const WorkoutFrame = () => {
               </Dialog>
               <Dialog
                 open={openRecommend}
-                TransitionComponent={Transition}
                 keepMounted
                 onClose={handleRecommendClose}
                 aria-describedby="alert-dialog-slide-description"

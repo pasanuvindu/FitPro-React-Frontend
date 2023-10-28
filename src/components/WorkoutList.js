@@ -7,6 +7,7 @@ const WorkoutCard = ({ workout }) => {
   const navigate = useNavigate(); // Initialize the useNavigate hook
 
   return (
+    <div className="my-4">
     <div className="bg-white rounded-lg overflow-hidden shadow-md flex">
       <img
         className="w-24 h-24 object-cover"
@@ -14,39 +15,58 @@ const WorkoutCard = ({ workout }) => {
         alt={workout.workoutName}
       />
       <div className="p-4 flex flex-col">
-        <div className="text-xl font-semibold">{workout.workoutName}</div>
-        <div className="flex items-center space-x-2 mt-2 text-gray-600 text-sm">
-          <span>{workout.duration}min</span>
-          <span>|</span>
-          <span>Intensity</span>
-          {Array.from({ length: workout?.intensity }).map((_, index) => (
-            <span
-              key={index}
-              className="w-2 h-2 bg-gray-400 rounded-full"
-            ></span>
-          ))}
+        <div className="text-xl font-semibold" style={{ marginLeft: '-352px' }}>{workout.workoutName}</div>
+        <div style={{ marginRight: '12px' }}>
+          <div className="flex items-center space-x-2 mt-2  text-gray-600 text-sm" style={{ marginLeft: '67px' }}>
+            <span>{workout.duration}min</span>
+            <span>|</span>
+            <span>Intensity</span>
+            {Array.from({ length: workout?.intensity }).map((_, index) => (
+              <span
+                key={index}
+                className="w-2 h-2 bg-gray-400 rounded-full"
+              ></span>
+            ))}
+          </div>
         </div>
         <button
           className="mt-4 px-4 py-2 w-32 bg-gradient-to-r from-pink-500 to-orange-400 text-white font-medium rounded-full shadow-md flex-shrink-0"
+          style={{ marginLeft: '382px' }}
           onClick={() => navigate(`/workoutframe/${workout._id}`)}
         >
           START
         </button>
       </div>
     </div>
+    </div>
   );
 };
 
 const WorkoutList = () => {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const wotype = window.location.search.substring("workoutPlace").split("=")[1];
   const [records, setRecords] = useState({});
 
   const [workoutData, setWorkoutData] = useState([]); // Assuming you've named your reducer 'workouts'
 
+  // const workoutData = useSelector((state) =>
+  //   state.workouts.filter((w) => w.workoutPlace === wotype)
+  // ); // Assuming you've named your reducer 'workouts'
+
+  // useEffect(() => {
+  //   dispatch(getWorkouts()); // Dispatch the action to fetch workouts when the component mounts
+  // }, [dispatch]);
+
+
   useEffect(() => {
-    const savedHeight = localStorage.getItem("height");
-    const savedWeight = localStorage.getItem("weight");
+    const savedHeight =
+      localStorage.getItem("height") === null
+        ? 143
+        : localStorage.getItem("height");
+    const savedWeight =
+      localStorage.getItem("weight") === null
+        ? 60
+        : localStorage.getItem("weight");
 
     const Data = {
       age: savedHeight,

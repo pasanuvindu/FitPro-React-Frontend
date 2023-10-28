@@ -8,30 +8,32 @@ const DietCard = (props) => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-md flex">
-      <img
-        className="w-24 h-24 object-cover"
-        //src={diet.image}
-        src={diet.image}
-        alt={diet.dietType}
-      />
-      <div className="p-4 flex flex-col">
-        {/* <div className="text-xl font-semibold">{diet.dietType}</div> */}
-        <div className="text-xl font-semibold">{diet.dayofWeek}</div>
-        <div className="flex items-center space-x-2 mt-2 text-gray-600 text-sm">
-          {/* <span>{diet.dayofWeek}</span> */}
-          <span>{diet.dietType}</span>
-        </div>
-        <button
-          className="mt-4 px-4 py-2 w-32 bg-gradient-to-r from-pink-500 to-orange-400 text-white font-medium rounded-full shadow-md flex-shrink-0"
-          onClick={() =>
-            navigate(`/dietframe/${diet.dayofWeek}`, { state: { diet } })
-          }
-        >
-          VIEW
-        </button>
+    <div className="my-4">
+      <div className="bg-white rounded-lg overflow-hidden shadow-md flex">
+        <img
+          className="w-24 h-24 object-cover"
+          //src={diet.image}
+          src={diet.image}
+          alt={diet.dietType}
+        />
+        <div className="p-4 flex flex-col">
+          {/* <div className="text-xl font-semibold">{diet.dietType}</div> */}
+          <div className="text-xl font-semibold " style={{ marginLeft: '-132px' }}>{diet.dayofWeek}</div>
+          <div className="flex items-center space-x-2 mt-2 ml-14 text-gray-600 text-sm">
+            {/* <span>{diet.dayofWeek}</span> */}
+            <span>{diet.dietType}</span>
+          </div>
+          <button
+            className=" px-4 py-2 w-32 ml-32 bg-gradient-to-r from-pink-500 to-orange-400 text-white font-medium rounded-full shadow-md "
+            
+            onClick={() =>
+              navigate(`/dietframe/${diet.dayofWeek}`, { state: { diet } })
+            }
+          >
+            VIEW
+          </button>
 
-        {/* <div className="mt-4">
+          {/* <div className="mt-4">
           <div className="font-semibold">Breakfast:</div>
           <ul>
             {diet.breakfast.map((item, index) => (
@@ -55,6 +57,7 @@ const DietCard = (props) => {
             ))}
           </ul>
         </div> */}
+        </div>
       </div>
     </div>
   );
@@ -130,7 +133,6 @@ const DietListNonVeg = () => {
       }
     });
   }, []);
-
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
