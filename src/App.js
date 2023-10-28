@@ -21,6 +21,7 @@ import DietListNonVeg from "./components/DietListNonVeg";
 import ProgressStat from "./components/WorkoutTracker/ProgressStat";
 import WorkoutOverview from "./components/WorkotOverview";
 import DietFrame from "./components/DietFrame";
+import HealthDashboard from "./components/HealthDashboard/HealthDashboard";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
             <Route path="/dietlistnonveg" element={<DietListNonVeg />} />
             <Route path="/progressStat" element={<ProgressStat />} />
             <Route path="/workoutOverview" element={<WorkoutOverview />} />
+            <Route path="/healthdashboard" element={<HealthDashboard />} />
           </Routes>
         </Layout>
       </Router>
