@@ -7,8 +7,9 @@ import { makeStyles } from "@material-ui/styles";
 import { blue} from "@material-ui/core/colors";
 import DietImg from "../assets/diet.png";
 import axios from "axios";
-import LunchImg from "../assets/dish.png";
-import DinnerImg from "../assets/foodImg.png";
+import BreakImg from "../assets/break.png";
+import LunchImg from "../assets/lunch.png";
+import DinnerImg from "../assets/dinner.png";
 import "./DietTracker.css";
 import { format } from "date-fns";
 
@@ -101,6 +102,11 @@ function DietTracker() {
       marginLeft: "500px",
       marginTop: "-153px",
     },
+    background: {
+      backgroundImage: `url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=2053&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    },
   };
 
   const [records, setRecords] = useState({});
@@ -149,7 +155,7 @@ function DietTracker() {
   }
 
   return (
-    <div>
+    <div style={styles.background}>
       <Box
         display="flex"
         justifyContent="center"
@@ -182,7 +188,7 @@ function DietTracker() {
 
               <div>
                 <img
-                  src={DietImg} 
+                  src={BreakImg} 
                   alt="Diet Tracker"
                   className="image-container"
                   style={{

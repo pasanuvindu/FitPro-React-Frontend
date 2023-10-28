@@ -1,47 +1,61 @@
-import React, { useState, useEffect } from "react"; // Import useState and useEffect
-import axios from "axios"; // Import axios
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+// Adjust the path as needed
 import { useNavigate } from "react-router-dom";
-import DietFrame from "./DietFrame";
 
 const DietCard = (props) => {
   const diet = props.diet;
   const navigate = useNavigate();
 
-  const handleViewClick = () => {
-    // Navigate to the DietFrame component with the diet data as state
-    navigate(`/dietframe/${diet.dayofWeek}`, { state: { diet } });
-  };
-
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md flex">
       <img
         className="w-24 h-24 object-cover"
-        src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80"
+        //src={diet.image}
+        src={diet.image}
         alt={diet.dietType}
       />
       <div className="p-4 flex flex-col">
+        {/* <div className="text-xl font-semibold">{diet.dietType}</div> */}
         <div className="text-xl font-semibold">{diet.dayofWeek}</div>
         <div className="flex items-center space-x-2 mt-2 text-gray-600 text-sm">
+          {/* <span>{diet.dayofWeek}</span> */}
           <span>{diet.dietType}</span>
         </div>
         <button
           className="mt-4 px-4 py-2 w-32 bg-gradient-to-r from-pink-500 to-orange-400 text-white font-medium rounded-full shadow-md flex-shrink-0"
-          onClick={handleViewClick}
+          onClick={() =>
+            navigate(`/dietframe/${diet.dayofWeek}`, { state: { diet } })
+          }
         >
           VIEW
         </button>
 
-        {diet.breakfast && (
-          <DietFrame
-            diet={{
-              breakfast: diet.breakfast,
-              lunch: diet.lunch,
-              dinner: diet.dinner,
-            }}
-          />
-        )}
+        {/* <div className="mt-4">
+          <div className="font-semibold">Breakfast:</div>
+          <ul>
+            {diet.breakfast.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="mt-4">
+          <div className="font-semibold">Lunch:</div>
+          <ul>
+            {diet.lunch.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="mt-4">
+          <div className="font-semibold">Dinner:</div>
+          <ul>
+            {diet.dinner.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div> */}
       </div>
-      <br />
     </div>
   );
 };
@@ -49,6 +63,46 @@ const DietCard = (props) => {
 const DietListVeg = () => {
   const [records, setRecords] = useState([]);
   const [day, setDay] = useState(null);
+  const [dietType, setDietType] = useState();
+  useEffect(() => {
+    const isVeg = "No";
+
+    const BaseURL = `http://localhost:8000/meal/predict/meal`;
+
+    const savedAge = localStorage.getItem("age");
+    const savedGender = localStorage.getItem("gender");
+
+    const age = savedAge ? parseInt(savedAge) : 30;
+
+    const gender = savedGender
+      ? savedGender.charAt(0).toUpperCase().toString()
+      : "M";
+
+    console.log("gender", gender);
+    console.log("age", age);
+
+    const Data = {
+      Age: age,
+      Gender: gender,
+      Activity: "Low",
+      CaloriesIntake: 1500,
+    };
+
+    axios.post(BaseURL, Data).then((secondResponse) => {
+      if (secondResponse.data) {
+        setDietType(secondResponse.data.Predicted_Meal_Type);
+        console.log("secondResponse.data", secondResponse.data);
+      }
+    });
+
+    if (dietType === "Low Carb") {
+      console.log("ddd", dietType);
+      const diet = "LowCarbs";
+      setDietType(diet);
+      console.log("ddd", dietType);
+    }
+  }, []);
+
   useEffect(() => {
     const dietType = "LowCarbs";
     const date = "Monday";
@@ -84,7 +138,6 @@ const DietListVeg = () => {
           <DietCard key={index} diet={diet} />
         ))}
       </div>
-      <br />
     </div>
   );
 };

@@ -36,6 +36,25 @@ const BmiCal = () => {
       const calculatedBMI = weightInKg / (heightInM * heightInM);
       setBMI(calculatedBMI.toFixed(2));
       setCategory(calculateBMIRange(calculatedBMI));
+      localStorage.setItem("height", height);
+      localStorage.setItem("weight", weight);
+
+      if (dob && gender) {
+        const birthDate = new Date(dob);
+        const currentDate = new Date();
+
+        const age = currentDate.getFullYear() - birthDate.getFullYear();
+
+        if (
+          currentDate.getMonth() < birthDate.getMonth() ||
+          (currentDate.getMonth() === birthDate.getMonth() &&
+            currentDate.getDate() < birthDate.getDate())
+        ) {
+          age--; // Subtract 1 year if the birthday hasn't occurred yet
+        }
+        localStorage.setItem("age", age);
+        localStorage.setItem("gender", gender);
+      }
     } else {
       setBMI(null);
       setCategory("");

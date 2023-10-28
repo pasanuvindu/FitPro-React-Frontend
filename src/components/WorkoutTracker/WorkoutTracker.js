@@ -1,9 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import WorkoutTrackerTypes from "./WorkoutTrackerTypes";
 
@@ -14,10 +12,15 @@ function WorkoutTracker() {
       height: "640px",
       backgroundColor: "ash",
     },
+    background: {
+      backgroundImage: `url('https://plus.unsplash.com/premium_photo-1681433383783-661b519b154a?auto=format&fit=crop&q=80&w=2060&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    },
   };
 
   return (
-    <div>
+    <div style={styles.background}>
       <Box
         display="flex"
         justifyContent="center"
@@ -36,4 +39,5 @@ function WorkoutTracker() {
     </div>
   );
 }
+
 export default WorkoutTracker;

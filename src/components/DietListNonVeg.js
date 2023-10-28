@@ -12,7 +12,7 @@ const DietCard = (props) => {
       <img
         className="w-24 h-24 object-cover"
         //src={diet.image}
-        src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80"
+        src={diet.image}
         alt={diet.dietType}
       />
       <div className="p-4 flex flex-col">
@@ -63,10 +63,51 @@ const DietCard = (props) => {
 const DietListNonVeg = () => {
   const [records, setRecords] = useState([]);
   const [day, setDay] = useState(null);
+
+  const [dietType, setDietType] = useState();
+  useEffect(() => {
+    const isVeg = "No";
+
+    const BaseURL = `http://localhost:8000/meal/predict/meal`;
+
+    const savedAge = localStorage.getItem("age");
+    const savedGender = localStorage.getItem("gender");
+
+    const age = savedAge ? parseInt(savedAge) : 30;
+
+    const gender = savedGender
+      ? savedGender.charAt(0).toUpperCase().toString()
+      : "M";
+
+    console.log("gender", gender);
+    console.log("age", age);
+
+    const Data = {
+      Age: age,
+      Gender: gender,
+      Activity: "Low",
+      CaloriesIntake: 1500,
+    };
+
+    axios.post(BaseURL, Data).then((secondResponse) => {
+      if (secondResponse.data) {
+        setDietType(secondResponse.data.Predicted_Meal_Type);
+        console.log("secondResponse.data", secondResponse.data);
+      }
+    });
+
+    if (dietType === "Low Carb") {
+      console.log("ddd", dietType);
+      const diet = "LowCarbs";
+      setDietType(diet);
+      console.log("ddd", dietType);
+    }
+  }, []);
+
   useEffect(() => {
     const dietType = "LowCarbs";
     const date = "Monday";
-    const isVeg = "No";
+    const isVeg = "Yes";
 
     const currentDate = new Date();
     const daysOfWeek = [
@@ -89,6 +130,7 @@ const DietListNonVeg = () => {
       }
     });
   }, []);
+
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
