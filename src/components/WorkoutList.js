@@ -75,6 +75,8 @@ const WorkoutList = () => {
       calories_consumed_per_day: 2200,
     };
 
+    
+
     const apiURL = "http://localhost:8000/workout/predict/workout";
 
     axios.post(apiURL, Data).then((response) => {
@@ -93,10 +95,24 @@ const WorkoutList = () => {
     });
   }, []);
 
+  const styles = {
+
+    background: {
+      backgroundImage: `url('https://images.unsplash.com/photo-1683758575782-a632dbbe9eed?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    },
+
+    card :{
+      backgroundColor: "ash",
+      backgroundColor: "rgba(211, 211, 211, 0.6)"
+    }
+  };
+
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white w-full max-w-3xl p-8 rounded-xl shadow-xl">
-        <div className="text-2xl font-bold mb-6">Your Home Workouts</div>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100" style={styles.background}>
+      <div className="bg-white w-full max-w-3xl p-8 rounded-xl shadow-xl"style={styles.card}>
+        <div className="text-2xl font-bold mb-6">Your Workouts</div>
         {workoutData?.map((workout, index) => (
           <WorkoutCard key={index} workout={workout} />
         ))}
