@@ -26,7 +26,9 @@ function ImagePicker() {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    navigate(`/workoutOverview?fileName=${fileName}`);
+   // navigate(`/workoutOverview?fileName=${fileName}`);
+    navigate("/workoutOverview", { state: { image, fileName } });
+
   };
 
 

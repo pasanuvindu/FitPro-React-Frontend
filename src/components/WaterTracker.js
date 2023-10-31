@@ -34,13 +34,13 @@ const WaterTracker = () => {
   const [count, setCount] = useState(0);
   const [countML, setCountML] = useState(250);
 
-  
+
   const data = {
     labels: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
     datasets: [
       {
         label: "consumption",
-        data: [1, 2, 3, count, 0, 0,0 ],
+        data: [1, 2, 3, count, 0, 0, 0],
         backgroundColor: "aqua",
         borderColor: "black",
         borderWidth: 1,
@@ -88,18 +88,18 @@ const WaterTracker = () => {
     },
   }));
 
- 
+
 
 
   const incrementCount = () => {
     setCount(count + 1);
-    setCountML(countML+250);
+    setCountML(countML + 250);
   };
 
   const decrementCount = () => {
     if (count > 0) {
       setCount(count - 1);
-      setCountML(countML-250);
+      setCountML(countML - 250);
     }
   };
 
@@ -116,6 +116,70 @@ const WaterTracker = () => {
             Stats Related to your water consumtion would be available here!
           </Typography>
         </PropertiesTextBox>
+        <Box sx={{display: "flex", flexDirection:"row" , justifyContent:"center",alignItems:"center"}}>
+
+          <AddCircleIcon
+            sx={{
+              fontSize: "90px",
+              color: "#000339",
+              marginRight: "100px",
+            }}
+            onClick={incrementCount}
+          />
+
+          <Box>
+          <Typography
+            sx={{
+              color: "#5A6473",
+              fontSize: "46px",
+              fontWeight: "7",
+              mt: 1,
+              marginTop: "30px",
+            }}
+
+          >
+            {count}
+          </Typography>
+
+          <Typography
+            sx={{
+              color: "#5A6473",
+              fontSize: "23px",
+              fontWeight: "1",
+              //marginLeft: "323px",
+            }}
+
+          >
+            glasses
+          </Typography>
+          <Typography
+            sx={{
+              color: "#5A6473",
+              fontSize: "23px",
+              fontWeight: "1",
+             // marginLeft: "323px",
+            }}
+
+          >
+            ({countML})ml
+          </Typography>
+          </Box>
+
+
+
+          <RemoveCircleIcon
+            sx={{
+              fontSize: "90px",
+              color: "#000339",
+              marginLeft: "100px",
+            }}
+            onClick={decrementCount}
+          ></RemoveCircleIcon>
+
+
+
+
+        </Box>
         <br></br>
         <br></br>
         <Paper>
@@ -132,17 +196,8 @@ const WaterTracker = () => {
         <br />
         <br />
         <Paper>
-          <div className="img">
-            <img
-              src={Water}
-              alt="heroImg"
-              style={{
-                width: "323px",
-                marginBottom: "2rem",
-                marginTop: "2rem",
-                marginLeft: "354px",
-              }}
-            />
+          {/* <div className="img">
+
             <br></br>
             <br></br>
             <br></br>
@@ -169,7 +224,7 @@ const WaterTracker = () => {
                 fontSize: "46px",
                 fontWeight: "7",
                 mt: 1,
-                marginLeft: "523px",
+                marginLeft: "323px",
               }}
               
             >
@@ -181,7 +236,7 @@ const WaterTracker = () => {
                 color: "#5A6473",
                 fontSize: "23px",
                 fontWeight: "1",
-                marginLeft: "499px",
+                marginLeft: "323px",
               }}
               
             >
@@ -192,14 +247,14 @@ const WaterTracker = () => {
                 color: "#5A6473",
                 fontSize: "23px",
                 fontWeight: "1",
-                marginLeft: "500px",
+                marginLeft: "323px",
               }}
               
             >
                 ({countML})ml
             </Typography>
             <br></br>  <br></br>   <br></br>
-          </div>
+          </div> */}
         </Paper>
       </Container>
     </Box>
