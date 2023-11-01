@@ -13,7 +13,6 @@ import Slide from "@mui/material/Slide";
 import yourImage from "./assets/fitness-gym-logo.png";
 import axios from "axios";
 
-
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<any, any>,
@@ -99,7 +98,6 @@ const WorkoutFrame = () => {
     }, 20000); // 20 seconds
   };
 
-
   useEffect(() => {
     console.log("workoutData workout:", workoutData);
     console.log("selected workout:");
@@ -134,8 +132,6 @@ const WorkoutFrame = () => {
   }, []);
 
   useEffect(() => {
-
-
     const buttonElement = document.querySelector(".complete-button");
 
     if (buttonElement) {
@@ -194,7 +190,6 @@ const WorkoutFrame = () => {
   };
 
   const styles = {
-
     background: {
       backgroundImage: `url('https://images.unsplash.com/photo-1535743686920-55e4145369b9?auto=format&fit=crop&q=80&w=1932&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
       backgroundSize: "cover",
@@ -215,10 +210,8 @@ const WorkoutFrame = () => {
   return (
     <div style={styles.background}>
       <div className="frame h-[568px] relative w-[1087px] flex justify-center items-center h-screen">
-
         <div
           className="overlap-group bg-white bg-opacity-60 rounded-[22px] mt-20 shadow-[0px 4px 11px #00000040] h-[509px] absolute top-[59px] left-0 w-full flex"
-
           style={{
             marginLeft: "600px",
             marginTop: "250px",
@@ -259,8 +252,8 @@ const WorkoutFrame = () => {
                   <DialogTitle>Hey there!</DialogTitle>
                   <DialogContent>
                     <DialogContentText>
-                      We noticed you skipped your workout today. Please select the
-                      reason from the options below:
+                      We noticed you skipped your workout today. Please select
+                      the reason from the options below:
                     </DialogContentText>
                     <Select
                       autoFocus
@@ -321,7 +314,7 @@ const WorkoutFrame = () => {
                 disabled={isButtonDisabled}
                 onClick={() => {
                   handleCompleteWorkout();
-                  
+
                   localStorage.setItem(
                     `workoutStatus_${workoutId}`,
                     "completed"

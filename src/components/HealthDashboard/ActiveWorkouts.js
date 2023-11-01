@@ -24,7 +24,7 @@ function ActiveWorkouts() {
   ];
 
   return (
-    <div className="bg-gray-800 p-4 rounded shadow-lg text-white">
+    <div className="bg-white p-4 rounded-lg shadow-lg text-gray-800">
       <h2 className="text-2xl font-semibold mb-4">Active Workouts</h2>
 
       <div className="mb-4">
