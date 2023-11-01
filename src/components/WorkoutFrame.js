@@ -24,6 +24,7 @@ const Transition = React.forwardRef(function Transition(
 const WorkoutFrame = () => {
   const { workoutId } = useParams();
   const workoutData = useSelector((state) => state.workouts);
+  console.log("workoutData:", workoutData);
   const selectedWorkout = workoutData.find(
     (workout) => workout._id === workoutId
   );

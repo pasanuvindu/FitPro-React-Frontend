@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { MdAccountCircle } from "react-icons/md"; // Import the user profile icon
 
 const Navbar = () => {
   const [navOpen, setNavOpen] = useState(false);
@@ -45,6 +46,12 @@ const Navbar = () => {
           <li className="nav-item hover:text-[#FF6B6B]">
             <a href="/diet">Diet</a>
           </li>
+          {/* Add the user profile icon that navigates to "/healthdashboard" */}
+          <li className="nav-item hover:text-[#FF6B6B]">
+            <a href="/healthdashboard">
+              <MdAccountCircle size={24} />
+            </a>
+          </li>
         </ul>
       </div>
       {navOpen && (
@@ -61,6 +68,12 @@ const Navbar = () => {
             </li>
             <li className="py-2">
               <a href="/diet">Diet</a>
+            </li>
+            {/* Add the user profile icon in the mobile navigation menu */}
+            <li className="py-2">
+              <a href="/healthdashboard">
+                <MdAccountCircle size={24} />
+              </a>
             </li>
           </ul>
         </div>
