@@ -43,7 +43,7 @@ const BmiCal = () => {
         const birthDate = new Date(dob);
         const currentDate = new Date();
 
-        const age = currentDate.getFullYear() - birthDate.getFullYear();
+        let age = currentDate.getFullYear() - birthDate.getFullYear();
 
         if (
           currentDate.getMonth() < birthDate.getMonth() ||
