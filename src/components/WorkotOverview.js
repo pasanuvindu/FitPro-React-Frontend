@@ -55,6 +55,8 @@ function WorkoutOverview() {
         console.log(data.hipWasiRatio)
         setRiskLevel(data.riskLevel);
 
+        localStorage.setItem("riskLevel", data.riskLevel);
+
         // Fetch body measurement image
         const imageResponse = await fetch("image_api_endpoint_here");
         const imageBlob = await imageResponse.blob();

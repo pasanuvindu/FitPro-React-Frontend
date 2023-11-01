@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getWorkouts } from "../actions/workout"; // Adjust the path as needed
-import { useNavigate,useLocation } from "react-router-dom"; // Import the useNavigate hook
+import { useNavigate, useLocation } from "react-router-dom"; // Import the useNavigate hook
 import axios from "axios";
 const WorkoutCard = ({ workout }) => {
   const navigate = useNavigate(); // Initialize the useNavigate hook
 
- 
+
 
   const isWorkoutCompleted = () => {
     // Check the status of the current workout in localStorage
@@ -16,46 +16,45 @@ const WorkoutCard = ({ workout }) => {
 
   return (
     <div className="my-4">
-    <div className="bg-white rounded-lg overflow-hidden shadow-md flex">
-      <img
-        className="w-24 h-24 object-cover"
-        src={workout.image}
-        alt={workout.workoutName}
-      />
-      <div className="p-4 flex flex-col">
-        <div className="text-xl font-semibold" style={{ marginLeft: '-352px' }}>{workout.workoutName}</div>
-        <div style={{ marginRight: '12px' }}>
-          <div className="flex items-center space-x-2 mt-2  text-gray-600 text-sm" style={{ marginLeft: '67px' }}>
-            <span>{workout.duration}min</span>
-            <span>|</span>
-            <span>Intensity</span>
-            {Array.from({ length: workout?.intensity }).map((_, index) => (
-              <span
-                key={index}
-                className="w-2 h-2 bg-gray-400 rounded-full"
-              ></span>
-            ))}
+      <div className="bg-white rounded-lg overflow-hidden shadow-md flex">
+        <img
+          className="w-24 h-24 object-cover"
+          src={workout.image}
+          alt={workout.workoutName}
+        />
+        <div className="p-4 flex flex-col">
+          <div className="text-xl font-semibold" style={{ marginLeft: '-352px' }}>{workout.workoutName}</div>
+          <div style={{ marginRight: '12px' }}>
+            <div className="flex items-center space-x-2 mt-2  text-gray-600 text-sm" style={{ marginLeft: '67px' }}>
+              <span>{workout.duration}min</span>
+              <span>|</span>
+              <span>Intensity</span>
+              {Array.from({ length: workout?.intensity }).map((_, index) => (
+                <span
+                  key={index}
+                  className="w-2 h-2 bg-gray-400 rounded-full"
+                ></span>
+              ))}
+            </div>
           </div>
+          <button
+            className={`mt-4 px-4 py-2 w-32 ${isWorkoutCompleted()
+                ? "bg-green-500"
+                : "bg-gradient-to-r from-pink-500 to-orange-400"
+              } text-white font-medium rounded-full shadow-md flex-shrink-0`}
+            style={{ marginLeft: '382px' }}
+            onClick={() => {
+              if (isWorkoutCompleted()) {
+                // Handle the case when the workout is already completed
+              } else {
+                navigate(`/workoutframe/${workout._id}`);
+              }
+            }}
+          >
+            {isWorkoutCompleted() ? "COMPLETED" : "START"}
+          </button>
         </div>
-        <button
-          className={`mt-4 px-4 py-2 w-32 ${
-            isWorkoutCompleted()
-            ?"bg-green-500"
-            :"bg-gradient-to-r from-pink-500 to-orange-400"
-          } text-white font-medium rounded-full shadow-md flex-shrink-0`}
-          style={{ marginLeft: '382px' }}
-          onClick={() => {
-            if (isWorkoutCompleted()) {
-              // Handle the case when the workout is already completed
-            } else {
-              navigate(`/workoutframe/${workout._id}`);
-            }
-          }}
-        >
-          {isWorkoutCompleted() ? "COMPLETED" : "START"}
-        </button>
       </div>
-    </div>
     </div>
   );
 };
@@ -88,17 +87,22 @@ const WorkoutList = () => {
       localStorage.getItem("weight") === null
         ? 60
         : localStorage.getItem("weight");
+    const savedRiskLevel =
+      localStorage.getItem("riskLevel") === null
+        ? 'Moderate'
+        : localStorage.getItem("riskLevel");
 
     const Data = {
       age: savedHeight,
-      weight_kg: savedWeight,
-      exercise_hours_per_week: 5,
-      calories_consumed_per_day: 2200,
+      weight: savedWeight,
+      workout_intensity: 5,
+      calories_burned: 2200,
+      risk_level: savedRiskLevel
     };
 
-    
 
-    const apiURL = "http://localhost:8000/workout/predict/workout";
+
+    const apiURL = "http://localhost:8000/plan/predict/plan";
 
     axios.post(apiURL, Data).then((response) => {
       if (response.data) {
@@ -124,7 +128,7 @@ const WorkoutList = () => {
       backgroundPosition: "center",
     },
 
-    card :{
+    card: {
       backgroundColor: "ash",
       backgroundColor: "rgba(211, 211, 211, 0.6)"
     }
@@ -132,7 +136,7 @@ const WorkoutList = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100" style={styles.background}>
-      <div className="bg-white w-full max-w-3xl p-8 rounded-xl shadow-xl"style={styles.card}>
+      <div className="bg-white w-full max-w-3xl p-8 rounded-xl shadow-xl" style={styles.card}>
         <div className="text-2xl font-bold mb-6">Your Workouts</div>
         {workoutData?.map((workout, index) => (
           <WorkoutCard key={index} workout={workout} />
