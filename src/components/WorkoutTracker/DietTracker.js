@@ -4,12 +4,15 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@material-ui/styles";
-import { blue} from "@material-ui/core/colors";
+import { blue } from "@material-ui/core/colors";
 import DietImg from "../assets/diet.png";
 import axios from "axios";
-import BreakImg from "../assets/break.png";
-import LunchImg from "../assets/lunch.png";
-import DinnerImg from "../assets/dinner.png";
+import BreakImg from "../assets/Breakfast.png";
+import LunchImg from "../assets/Lunch.png";
+import DinnerImg from "../assets/Dinner.png";
+import Carb from "../assets/carb.png";
+import Protein from "../assets/protein.png";
+import Fats from "../assets/fat.png";
 import "./DietTracker.css";
 import { format } from "date-fns";
 
@@ -33,38 +36,43 @@ function DietTracker() {
     Breakfast: {
       width: "351px",
       height: "154px",
-      borderRadius: "5px",
+      borderRadius: "20px",
       padding: "20px",
       marginLeft: "50px",
       marginTop: "-255px",
       cursor: "pointer",
       paddingLeft: "12px",
+      backgroundColor: "#b2dfdb",
     },
     Lunch: {
       width: "351px",
       height: "154px",
-      borderRadius: "5px",
+      borderRadius: "20px",
       padding: "20px",
       marginTop: "25px",
       marginLeft: "-352px",
       cursor: "pointer",
       paddingLeft: "12px",
+      backgroundColor: "#dce775"
     },
     Dinner: {
       width: "351px",
       height: "154px",
-      borderRadius: "5px",
+      borderRadius: "20px",
       padding: "20px",
       marginTop: "425px",
       cursor: "pointer",
       marginLeft: "-352px",
       marginRight: "191px",
       paddingLeft: "12px",
+      backgroundColor: "#ff8a65"
     },
     records: {
       marginRight: "35px",
       width: "900px",
       height: "640px",
+      backgroundColor: "rgba(255, 255, 255, 0.7)",
+      borderRadius: "20px",
     },
     progress: {
       width: "351px",
@@ -77,33 +85,37 @@ function DietTracker() {
     fats: {
       width: "351px",
       height: "154px",
-      borderRadius: "5px",
+      borderRadius: "20px",
       marginLeft: "45px",
       marginTop: "25px",
+      backgroundColor: '#90a4ae'
     },
     carbs: {
       width: "351px",
       height: "154px",
-      borderRadius: "5px",
+      borderRadius: "20px",
       marginLeft: "500px",
       marginTop: "-153px",
+      backgroundColor: '#90a4ae'
     },
     protein: {
       width: "351px",
       height: "154px",
-      borderRadius: "5px",
+      borderRadius: "20px",
       marginTop: "42px",
       marginLeft: "45px",
+      backgroundColor: '#90a4ae'
     },
     calories: {
       width: "351px",
       height: "154px",
-      borderRadius: "5px",
+      borderRadius: "20px",
       marginLeft: "500px",
       marginTop: "-153px",
+      backgroundColor: '#90a4ae'
     },
     background: {
-      backgroundImage: `url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=2053&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+      backgroundImage: `url('https://plus.unsplash.com/premium_photo-1679434184867-a294eb85400c?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
       backgroundSize: "cover",
       backgroundPosition: "center",
     },
@@ -188,7 +200,7 @@ function DietTracker() {
 
               <div>
                 <img
-                  src={BreakImg} 
+                  src={BreakImg}
                   alt="Diet Tracker"
                   className="image-container"
                   style={{
@@ -224,7 +236,7 @@ function DietTracker() {
               </Typography>
               <div>
                 <img
-                  src={LunchImg} 
+                  src={LunchImg}
                   alt="Diet Tracker"
                   className="image-container"
                   style={{
@@ -262,7 +274,7 @@ function DietTracker() {
               </Typography>
               <div>
                 <img
-                  src={DinnerImg} 
+                  src={DinnerImg}
                   alt="Diet Tracker"
                   className="image-container"
                   style={{
@@ -282,7 +294,7 @@ function DietTracker() {
         <div>
           <Card sx={styles.records}>
             <CardContent>
-              <Typography variant="h5" component="div">
+              <Typography variant="h4" component="div">
                 Diet Progress
               </Typography>
             </CardContent>
@@ -296,7 +308,7 @@ function DietTracker() {
                   </Typography>
                   <div>
                     <img
-                      src={DietImg} 
+                      src={DietImg}
                       alt="Diet Tracker"
                       className="image-container"
                       style={{
@@ -308,7 +320,7 @@ function DietTracker() {
                   </div>
                   <div className="image-container">
                     <img
-                      src="your-image-url.jpg" 
+                      src="your-image-url.jpg"
                       alt=""
                       className="side-image"
                     />
@@ -334,7 +346,7 @@ function DietTracker() {
                   </Typography>
                   <div>
                     <img
-                      src={DietImg} 
+                      src={Carb}
                       alt="Diet Tracker"
                       className="image-container"
                       style={{
@@ -365,7 +377,7 @@ function DietTracker() {
                   </Typography>
                   <div>
                     <img
-                      src={DietImg} 
+                      src={Protein}
                       alt="Diet Tracker"
                       className="image-container"
                       style={{
@@ -396,7 +408,7 @@ function DietTracker() {
                   </Typography>
                   <div>
                     <img
-                      src={DietImg} 
+                      src={Fats}
                       alt="Diet Tracker"
                       className="image-container"
                       style={{

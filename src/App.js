@@ -22,6 +22,7 @@ import ProgressStat from "./components/WorkoutTracker/ProgressStat";
 import WorkoutOverview from "./components/WorkotOverview";
 import DietFrame from "./components/DietFrame";
 import HealthDashboard from "./components/HealthDashboard/HealthDashboard";
+import WaterTracker from "./components/WaterTracker";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
             <Route path="/progressStat" element={<ProgressStat />} />
             <Route path="/workoutOverview" element={<WorkoutOverview />} />
             <Route path="/healthdashboard" element={<HealthDashboard />} />
+            <Route path="/WaterTracker" element={<WaterTracker />} />
           </Routes>
         </Layout>
       </Router>
