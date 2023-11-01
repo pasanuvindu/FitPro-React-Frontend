@@ -36,14 +36,22 @@ const WorkoutFrame = () => {
         ? 60
         : localStorage.getItem("weight");
 
-    const Data = {
-      age: savedHeight,
-      weight_kg: savedWeight,
-      exercise_hours_per_week: 5,
-      calories_consumed_per_day: 2200,
-    };
-
-    const apiURL = "http://localhost:8000/workout/predict/workout";
+        const savedRiskLevel =
+        localStorage.getItem("riskLevel") === null
+          ? 'Moderate'
+          : localStorage.getItem("riskLevel");
+  
+      const Data = {
+        age: savedHeight,
+        weight: savedWeight,
+        workout_intensity: 5,
+        calories_burned: 2200,
+        risk_level: savedRiskLevel
+      };
+  
+  
+  
+      const apiURL = "http://localhost:8000/plan/predict/plan";
 
     axios.post(apiURL, Data).then((response) => {
       if (response.data) {
