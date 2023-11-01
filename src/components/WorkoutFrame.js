@@ -13,6 +13,16 @@ import Slide from "@mui/material/Slide";
 import yourImage from "./assets/fitness-gym-logo.png";
 import axios from "axios";
 
+
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement<any, any>,
+  },
+  ref: React.Ref<unknown>
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 const WorkoutFrame = () => {
   const { workoutId } = useParams();
   const [workoutData, setWorkoutData] = useState([]);
@@ -71,6 +81,25 @@ const WorkoutFrame = () => {
 
   const navigate = useNavigate();
 
+  // Function to start the countdown
+  // Function to start the countdown
+  const startCountdown = () => {
+    setButtonDisabled(true);
+    let countdownInterval = setInterval(() => {
+      setCountdown((prevCountdown) => prevCountdown - 1);
+    }, 1000);
+
+    setTimeout(() => {
+      clearInterval(countdownInterval);
+      setButtonDisabled(false);
+      setCountdown(20); // Reset the countdown
+
+      // Navigate to the desired URL after 20 seconds
+      navigate(-1); // This will navigate to the desired URL
+    }, 20000); // 20 seconds
+  };
+
+
   useEffect(() => {
     console.log("workoutData workout:", workoutData);
     console.log("selected workout:");
@@ -105,22 +134,7 @@ const WorkoutFrame = () => {
   }, []);
 
   useEffect(() => {
-    // Function to start the countdown
-    const startCountdown = () => {
-      setButtonDisabled(true);
-      let countdownInterval = setInterval(() => {
-        setCountdown((prevCountdown) => prevCountdown - 1);
-      }, 1000);
 
-      setTimeout(() => {
-        clearInterval(countdownInterval);
-        setButtonDisabled(false);
-        setCountdown(20); // Reset the countdown
-
-        // Redirect to the desired URL after 20 seconds
-        navigate(-1);
-      }, 20000); // 20 seconds
-    };
 
     const buttonElement = document.querySelector(".complete-button");
 
@@ -170,6 +184,15 @@ const WorkoutFrame = () => {
     // You can perform further actions with the inputValue
   };
 
+  const handleCompleteWorkout = () => {
+    // Set the status as 'completed' for the current workout
+
+    startCountdown();
+
+    // Set the status as 'completed' for the current workout
+    localStorage.setItem(`workoutStatus_${workoutId}`, "completed");
+  };
+
   const styles = {
 
     background: {
@@ -177,6 +200,16 @@ const WorkoutFrame = () => {
       backgroundSize: "cover",
       backgroundPosition: "center",
     },
+  };
+
+  const divStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
+  const repsStyle = {
+    marginRight: "10px", // Adjust spacing between reps and sets
   };
 
   return (
@@ -272,6 +305,10 @@ const WorkoutFrame = () => {
                       onClick={() => {
                         handleRecommendClose();
                         navigate(-1); // Navigate to the desired URL
+                        localStorage.setItem(
+                          `workoutStatus_${workoutId}`,
+                          "completed"
+                        );
                       }}
                     >
                       Let's move on
@@ -282,6 +319,14 @@ const WorkoutFrame = () => {
               <button
                 className={`mt-4 px-4 py-2 w-32 bg-gradient-to-r from-pink-500 to-orange-400 text-white font-medium rounded-full shadow-md complete-button`}
                 disabled={isButtonDisabled}
+                onClick={() => {
+                  handleCompleteWorkout();
+                  
+                  localStorage.setItem(
+                    `workoutStatus_${workoutId}`,
+                    "completed"
+                  );
+                }}
               >
                 {isButtonDisabled
                   ? `Take a rest ${countdown} seconds`

@@ -8,11 +8,12 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ImagePicker() {
   const [image, setImage] = useState(null);
-  const [fileName , setFileName] = useState("No selected file");
+  const [fileName, setFileName] = useState("No selected file");
+  const [alertMessage, setAlertMessage] = useState(""); // State for alert message
   const styles = {
     card: {
       width: "1100px",
@@ -21,44 +22,31 @@ function ImagePicker() {
     },
   };
 
-  
-
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-   // navigate(`/workoutOverview?fileName=${fileName}`);
-    navigate("/workoutOverview", { state: { image, fileName } });
-
+    if (image) {
+      navigate("/workoutOverview", { state: { image, fileName } });
+    } else {
+      // Show alert message if no image is selected
+      setAlertMessage("Please upload an image first.");
+    }
   };
-
 
   return (
     <div>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="100vh"
-      >
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
         <Card sx={styles.card}>
           <CardContent>
             <Typography variant="h5" component="div">
               Upload User Body Image
             </Typography>
-            <Typography
-              sx={{ fontSize: 14, marginTop: 3 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              Instructions to upload the image : Wear a tight sports wear. Stand
-              straight in a white background for better results. Raise both
-              hands laterally for side view image.
+            <Typography sx={{ fontSize: 14, marginTop: 3 }} color="text.secondary" gutterBottom>
+              Instructions to upload the image : Wear a tight sports wear. Stand straight in a white background for better results. Raise both hands laterally for side view image.
             </Typography>
           </CardContent>
           <main>
-            <form
-              onClick={() => document.querySelector(".input-field").click()}
-            >
+            <form onClick={() => document.querySelector(".input-field").click()}>
               <input
                 type="file"
                 accept="image/*"
@@ -94,6 +82,9 @@ function ImagePicker() {
                 />
               </span>
             </section>
+
+            {alertMessage && <p className="alert-message">{alertMessage}</p>}
+
             <div className="text-center mt-6">
               <button
                 onClick={handleSubmit}

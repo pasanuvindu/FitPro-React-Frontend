@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getWorkouts } from "../actions/workout"; // Adjust the path as needed
-import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
+import { useNavigate,useLocation } from "react-router-dom"; // Import the useNavigate hook
 import axios from "axios";
 const WorkoutCard = ({ workout }) => {
   const navigate = useNavigate(); // Initialize the useNavigate hook
+
+ 
+
+  const isWorkoutCompleted = () => {
+    // Check the status of the current workout in localStorage
+    const status = localStorage.getItem(`workoutStatus_${workout._id}`);
+    return status === "completed";
+  };
 
   return (
     <div className="my-4">
@@ -30,11 +38,21 @@ const WorkoutCard = ({ workout }) => {
           </div>
         </div>
         <button
-          className="mt-4 px-4 py-2 w-32 bg-gradient-to-r from-pink-500 to-orange-400 text-white font-medium rounded-full shadow-md flex-shrink-0"
+          className={`mt-4 px-4 py-2 w-32 ${
+            isWorkoutCompleted()
+            ?"bg-green-500"
+            :"bg-gradient-to-r from-pink-500 to-orange-400"
+          } text-white font-medium rounded-full shadow-md flex-shrink-0`}
           style={{ marginLeft: '382px' }}
-          onClick={() => navigate(`/workoutframe/${workout._id}`)}
+          onClick={() => {
+            if (isWorkoutCompleted()) {
+              // Handle the case when the workout is already completed
+            } else {
+              navigate(`/workoutframe/${workout._id}`);
+            }
+          }}
         >
-          START
+          {isWorkoutCompleted() ? "COMPLETED" : "START"}
         </button>
       </div>
     </div>
@@ -49,6 +67,9 @@ const WorkoutList = () => {
 
   const [workoutData, setWorkoutData] = useState([]); // Assuming you've named your reducer 'workouts'
 
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const workoutPlace = searchParams.get("workoutPlace");
   // const workoutData = useSelector((state) =>
   //   state.workouts.filter((w) => w.workoutPlace === wotype)
   // ); // Assuming you've named your reducer 'workouts'
@@ -82,7 +103,7 @@ const WorkoutList = () => {
     axios.post(apiURL, Data).then((response) => {
       if (response.data) {
         setRecords(response.data);
-        const baseURL = `http://localhost:5000/api/workouts?workoutType=${response.data.workout_recommendation}`;
+        const baseURL = `http://localhost:5000/api/workouts?workoutType=${response.data.workout_recommendation}&workoutPlace=${workoutPlace}`;
         console.log("baseURL:", response.data);
 
         axios.get(baseURL).then((secondResponse) => {

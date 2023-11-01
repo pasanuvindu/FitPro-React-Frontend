@@ -73,53 +73,31 @@ const DietListVeg = () => {
     console.log("age", age);
 
     const Data = {
-      Age: 20,
+      Age: age,
       Gender: gender,
       Activity: "Low",
       CaloriesIntake: 1500
     };
 
-    axios.post(BaseURL, Data).then((secondResponse) => {
-      if (secondResponse.data) {
-        setDietType(secondResponse.data.Predicted_Meal_Type);
-        console.log("secondResponse.data", secondResponse.data);
-      }
-    });
-
-    if (dietType === "Low Carb") {
-      console.log("ddd", dietType);
-      const diet = "LowCarbs";
-      setDietType(diet);
-      console.log("ddd", dietType);
-    }
-  }, []);
-
-  useEffect(() => {
-    const dietType = "LowCarbs";
-    const date = "Monday";
-    const isVeg = "No";
-
-    const currentDate = new Date();
-    const daysOfWeek = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    const dayOfWeekIndex = currentDate.getDay();
-    const dayOfWeek = daysOfWeek[dayOfWeekIndex];
-    setDay(dayOfWeek);
-    const apiURL = `http://localhost:5000/api/diets/${dietType}/${isVeg}`;
-    axios.get(apiURL).then((response) => {
+    axios.post(BaseURL, Data).then((response) => {
       if (response.data) {
-        console.log("data", response.data);
-        setRecords(response.data);
+        setDietType(response.data.Predicted_Meal_Type);
+        console.log("secondResponse.data", response.data);
+        const baseURL = `http://localhost:5000/api/diets/${response.data.Predicted_Meal_Type}/${isVeg}`;
+        console.log("baseURL:", response.data);
+
+        axios.get(baseURL).then((secondResponse) => {
+          if (secondResponse.data) {
+            console.log("second call", secondResponse.data);
+            setRecords(secondResponse.data);
+          }
+        });
       }
     });
+
+   
   }, []);
+
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100" style={styles.background}>
