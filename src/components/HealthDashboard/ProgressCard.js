@@ -78,10 +78,10 @@ function ProgressCard() {
             className="bg-green-500 text-white p-2 rounded"
             onClick={() => {
               // Navigate to the "/watertrekker" page
-              window.location.href = "/watertrekker";
+              window.location.href = "/WaterTracker";
             }}
           >
-            Weekly Watertrekker
+            Weekly Water Tracker
           </button>
         </div>
       </div>

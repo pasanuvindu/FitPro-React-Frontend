@@ -104,7 +104,7 @@ const WaterTracker = () => {
   };
 
   return (
-    <Box sx={{ mt: 5, backgroundColor: "#F5FAFE", py: 10 }}>
+    <Box sx={{ backgroundColor: "#F5FAFE", py: 10 }}>
       <Container>
         <PropertiesTextBox>
           <Typography
